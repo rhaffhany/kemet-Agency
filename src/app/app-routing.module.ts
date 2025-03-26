@@ -1,7 +1,6 @@
 import { QuestionsComponent } from './components/questions/questions.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
 //layouts
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 //components
