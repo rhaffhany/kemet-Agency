@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -9,7 +10,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent {
 
-  constructor(private _AuthService:AuthService){}
+  constructor(private _AuthService:AuthService, 
+              private _Router:Router){}
 
   Logo:string = '../../../assets/logo/K.png';
   vector:string = '../../../assets/icons/Vector.png';
@@ -33,6 +35,7 @@ export class LoginComponent {
           localStorage.setItem('token', response.token);
           this._AuthService.saveUser();
           this.isLoading = false;
+          this._Router.navigate(['/dashboard']);
         },
         error:(err) => {
           console.log(err);
