@@ -1,0 +1,82 @@
+section{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--mainColor);
+    height: 100vh;
+}
+.vector-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100vh;
+}
+.vector1-bottom-left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+.form-control{
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 15px;
+}
+.login-btn{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 25px;
+    background-color: var(--secondaryColor);
+    color: var(--black);
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+        transform: translateY(-2px); 
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+    }
+    &:active {
+        transform: translateY(1px); 
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    }
+    &:disabled{
+        background-color: #ffdb9a;
+        cursor: not-allowed;
+    }
+}
+.password-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+.request a{
+    color: var(--secondaryColor);
+}
+.form-item{
+    position: relative;
+}
+.password-icon {
+    position: absolute;
+    right: 20px;
+    transform: translateY(-10%);
+    cursor: pointer;
+    color: #6F6C90; // Adjust icon color
+    font-size: 18px;
+    transition: color 0.3s ease;
+    &:hover {
+        color: darken(#6F6C90, 10%);
+    }
+}

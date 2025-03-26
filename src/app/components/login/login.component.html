@@ -1,0 +1,45 @@
+<section>
+    <img [src]="vector" alt="vector" class="vector-right">
+    <img [src]="vector1" alt="vector1" class="vector1-bottom-left">
+
+    <div class="container">
+        <img [src]="Logo" alt="logo" >
+        <p class="text-muted mb-0">Login to access your Travel Agency account</p>
+        <form [formGroup]="loginForm" (ngSubmit)="handleLogin()">
+    
+            <div class="form-item mt-2">
+                <label for="email"></label>
+                <input class="form-control" formControlName="email" type="email" id="email" placeholder="EMAIL" autocomplete="email">
+                <div *ngIf="loginForm.get('email')?.errors && (loginForm.get('email')?.touched || loginForm.get('email')?.value.length > 0 )" class="alert alert-danger mt-2 mb-0">
+                    <p *ngIf="loginForm.get('email')?.getError('required')">email is Required</p> 
+                    <p *ngIf="loginForm.get('email')?.getError('email')">Invalid Format</p> 
+                </div>
+            </div>
+            <div class="form-item">
+                <label for="password"></label>
+                <div class="password-icon" (click)="togglePasswordVisibility()">
+                    <i class="fa-solid fa-eye-slash"></i>
+                </div>
+                <input class="form-control" formControlName="password" [type]="passwordVisible ? 'text' : 'password'" id="password" placeholder="PASSWORD" autocomplete="current-password">
+                <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched" class="alert alert-danger mt-2 mb-0 ">
+                    <p *ngIf="loginForm.get('password')?.getError('required')">password is Required</p> 
+                </div>
+            </div>
+    
+            
+            <button [disabled]="loginForm.invalid" (click)="handleLogin()" class="login-btn mt-4" type="submit" role="button">
+                LOGIN <span *ngIf="isLoading"><i class="fas fa-spin fa-spinner"></i></span>
+            </button>
+
+            <div style="font-size: 14px;">
+                <p class="mt-3 mb-0">Don’t have an account?<span class="request"><a href="mailto:kemet@gmail.com"> Request Registration</a></span></p>
+                <p >Send an email to {{mail}} to get registered.</p>
+            </div>
+    
+    
+            <p *ngIf="errorMsg" class="alert alert-danger mt-2">{{errorMsg}}</p>
+    
+        </form>
+    </div>
+   
+</section>
