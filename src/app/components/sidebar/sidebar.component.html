@@ -1,12 +1,44 @@
-<!-- <div class="sidebar" [class.collapsed]="isCollapsed">
-    <button (click)="toggleSidebar()">☰</button>
-    <ul>
-      <li *ngFor="let item of menuItems" (click)="navigateTo(item.component)">
-        <i [class]="item.icon"></i>
-        <span *ngIf="!isCollapsed">{{ item.label }}</span>
+<section>
+  <div class="sidebar" [class.collapsed]="isCollapsed">
+
+    <button class="border-0" (click)="toggleSidebar()">
+      <i class="fa-solid fa-list d-flex justify-content-center "></i>
+    </button>
+    <img [src]="isCollapsed ? kLogo : logo" alt="logo" (click)="toggleSidebar()">
+  
+    <ul class="mt-4">
+      <li *ngFor="let item of menuItems" class="px-0 mb-1" routerLinkActive="active">
+        <a [routerLink]="item.path">
+          <div class="d-flex justify-content-between">
+            <div>
+              <i [class]="item.icon"></i>
+              <span *ngIf="!isCollapsed" class="label">{{ item.label }}</span>
+            </div>
+            <span *ngIf="!isCollapsed">
+            <i class="fa-solid fa-chevron-right"></i>
+            </span>
+          </div>
+        </a>
       </li>
     </ul>
-</div>
-   -->
 
-   <h1>welcome sidebar</h1>
+    <div class="sidebar-footer d-flex">
+      <img [src]="agencyPP" alt="agency-pp" class="me-2 mx-auto rounded-circle">
+      <span *ngIf="!isCollapsed" class="agency-info">
+        <div class="d-flex">
+          <div class="d-block">
+            <p class="mb-0">{{travelAgencyData.userName}}</p>
+            <p class="mb-0" style="font-size: 10px;">{{user}}{{travelAgencyData.userName}}</p>
+          </div>
+          <i class="fa-solid fa-chevron-down ms-5 mt-2"
+          style="cursor: pointer;"
+          (click)="toggleDropdown()"></i>
+        </div>
+        <div *ngIf="isDropdownOpen" class="dropdown-menu">
+          <button class="dropdown-item" (click)="logout()">Log Out</button>
+        </div>
+      </span>
+    </div>
+
+  </div>
+</section>

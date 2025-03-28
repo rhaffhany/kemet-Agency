@@ -16,6 +16,8 @@ import { ReviewsComponent } from './components/reviews/reviews.component';
 import { QuestionsComponent } from './components/questions/questions.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-layout.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { IncomeComponent } from './components/income/income.component';
 
 
 
@@ -33,6 +35,8 @@ import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-l
     QuestionsComponent,
     SidebarComponent,
     DashboardLayoutComponent,
+    NotFoundComponent,
+    IncomeComponent,
   ],
   imports: [
     BrowserModule,

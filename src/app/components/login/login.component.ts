@@ -14,8 +14,8 @@ export class LoginComponent {
               private _Router:Router){}
 
   Logo:string = '../../../assets/logo/K.png';
-  vector:string = '../../../assets/icons/Vector.png';
-  vector1:string = '../../../assets/icons/Ellipse.png';
+  vector:string = '../../../assets/img/Vector.png';
+  vector1:string = '../../../assets/img/Ellipse.png';
 
   mail:string ='kemet@example.com';
 
@@ -35,7 +35,7 @@ export class LoginComponent {
           localStorage.setItem('token', response.token);
           this._AuthService.saveUser();
           this.isLoading = false;
-          this._Router.navigate(['/dashboard']);
+          this._Router.navigate(['/profile']);
         },
         error:(err) => {
           console.log(err);
