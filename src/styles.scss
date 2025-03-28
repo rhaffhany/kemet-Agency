@@ -2,6 +2,7 @@
     --mainColor: #FFE5C2;
     --primaryColor: #FFF2E0;
     --secondaryColor: #FFBD67;
+    --lighterColor: #FFF1DA;
     --linkColor: #6F6C90;
     --yellow: #FAC817;
     --blue: #59B1E6;
@@ -10,6 +11,7 @@
 }
 
 *{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -43,6 +45,10 @@ html, body {
   
 ::-webkit-scrollbar-track {
     background-color: var(--white);
+}
+
+.rate{
+    color: var(--yellow);
 }
 
 

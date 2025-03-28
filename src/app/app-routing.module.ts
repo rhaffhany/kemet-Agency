@@ -12,6 +12,8 @@ import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-l
 import { ProfileComponent } from './components/profile/profile.component';
 import { PackagesComponent } from './components/packages/packages.component';
 import { CustomersComponent } from './components/customers/customers.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { IncomeComponent } from './components/income/income.component';
 
 const routes: Routes = [
   {
@@ -26,9 +28,13 @@ const routes: Routes = [
       {path:'packages', component: PackagesComponent, title:'Packages'},
       {path:'customers', component: CustomersComponent, title:'Customers'},
       {path:'reviews', component: ReviewsComponent, title:'Reviews'},
+      {path:'income', component: IncomeComponent, title:'Income'},
       {path:'questions', component: QuestionsComponent, title:'Questions'},
     ]
-  }
+  },
+
+  { path: '**', component: NotFoundComponent, title: 'Not Found 404!' }
+
 ];
 
 @NgModule({
