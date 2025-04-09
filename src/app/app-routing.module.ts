@@ -14,6 +14,7 @@ import { PackagesComponent } from './components/packages/packages.component';
 import { CustomersComponent } from './components/customers/customers.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { IncomeComponent } from './components/income/income.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,7 @@ const routes: Routes = [
     path:'', component: DashboardLayoutComponent, children:[
       {path:'dashboard', component: DashboardComponent, title:'Dashboard'},
       {path:'profile', component: ProfileComponent, title:'Profile'},
+      {path:'edit-profile', component: EditProfileComponent, title:'Edit Profile'},
       {path:'packages', component: PackagesComponent, title:'Packages'},
       {path:'customers', component: CustomersComponent, title:'Customers'},
       {path:'reviews', component: ReviewsComponent, title:'Reviews'},

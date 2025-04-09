@@ -31,12 +31,53 @@
       }
     }
 }
+.logo{
+    width: 35px;
+    height: 35px;
+}
 
 .agency-info, .profile-info{
     border-radius: 30px;
     padding: 10px 20px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+
     img{
         width: 120px;
         height: 120px;
     }
+}
+
+
+th, td {
+    padding: 12px 10px;
+}
+th{
+    font-weight: 400;
+}
+td{
+    font-weight: 300;
+    a{
+        color: var(--secondaryColor);
+        i{
+            font-size: 20px;
+        }
+    }
+}
+.info-table{
+    position: relative;
+}
+tr:not(:first-child)::after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #EEEEEE;
+}
+.media img {
+    width: 80px;
+    height: 60px;
+    object-fit: cover;
+    // margin-right: 5px;
 }
