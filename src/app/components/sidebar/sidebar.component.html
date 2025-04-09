@@ -2,9 +2,9 @@
   <div class="sidebar" [class.collapsed]="isCollapsed">
 
     <button class="border-0" (click)="toggleSidebar()">
-      <i class="fa-solid fa-list d-flex justify-content-center "></i>
+      <i class="fa-solid fa-list d-flex justify-content-center ms-1"></i>
     </button>
-    <img [src]="isCollapsed ? kLogo : logo" alt="logo" (click)="toggleSidebar()">
+    <img *ngIf="!isCollapsed" [src]="logo" alt="logo" class="mb-2" (click)="toggleSidebar()">
   
     <ul class="mt-4">
       <li *ngFor="let item of menuItems" class="px-0 mb-1" routerLinkActive="active">

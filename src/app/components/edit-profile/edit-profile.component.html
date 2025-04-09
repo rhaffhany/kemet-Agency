@@ -1,4 +1,5 @@
 <section>
+
     <div class="container">
         <div class="d-flex justify-content-between">
             <h4><img [src]="kLogo" alt="logo" class="logo">Hello <span class="fw-bold">{{travelAgencyData.userName}},</span></h4>
@@ -69,53 +70,60 @@
             </div>
         </div>
 
-        <div class="row mt-5">
+        <div class="row mt-3">
             <div class="col-md-12">
                 <div class="profile-info p-4 bg-white">
-                    <div class="d-flex justify-content-between">
-                        <h4 class="h5 fw-bold">About</h4>
-                        <button class="edit-btn" routerLink="/edit-profile">Edit Profile</button>
+                    <div class="d-flex mb-2">
+                        <div class="username w-50 me-4">
+                            <label for="name" class="mb-2">Name</label>
+                            <input type="text" id="name" class="form-control text-muted" [value]="travelAgencyData.userName" disabled>
+                        </div>
+                        <div class="phone w-50 me-3">
+                            <label for="phone" class="mb-2">Phone</label>
+                            <input type="text" id="phone" class="form-control text-muted" [value]="travelAgencyData.phoneNumber">
+                        </div>
                     </div>
-                    <div class="info-table">
-                        <table>
-                            <tr>
-                                <th>Name</th>
-                                <td>{{travelAgencyData.userName}}</td>
-                            </tr>
-                            <tr>
-                                <th>Bio</th>
-                                <td>{{travelAgencyData.description}}</td>
-                            </tr>
-                            <tr>
-                                <th>Location</th>
-                                <td>{{travelAgencyData.address}}</td>
-                            </tr>
-                            <tr>
-                                <th>Website</th>
-                                <td>
-                                    <a [href]="travelAgencyData.facebookURL" class="text-decoration-none">
-                                        <i class="fa-brands fa-facebook me-2"></i>
-                                    </a>
-                                    <a [href]="travelAgencyData.instagramURL" class="text-decoration-none">
-                                        <i class="fa-brands fa-instagram"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Phone</th>
-                                <td>{{travelAgencyData.phoneNumber}}</td>
-                            </tr>
-                            <tr>
-                                <th>Media</th>
-                                <td class="media" *ngFor="let img of media">
-                                    <img [src]="img.pictureUrl" alt="img">
-                                </td>
-                            </tr>
-                        </table>
+                    <div class="d-flex mb-2">
+                        <div class="d-block w-100 me-3">
+                            <div class="website mb-2">
+                                <label for="website" class="mb-2">Facebook Website</label>
+                                <input type="url" id="website" class="form-control text-muted" [value]="travelAgencyData.facebookURL">
+                            </div>
+                            <div class="website">
+                                <label for="website" class="mb-2">Instagram Website</label>
+                                <input type="url" id="website" class="form-control text-muted" [value]="travelAgencyData.instagramURL">
+                            </div>
+                        </div>
+                        <div class="bio w-100">
+                            <label for="bio" class="mb-2">Bio</label>
+                            <textarea name="bio" id="bio" class="form-control" rows="4" >{{travelAgencyData.description}}</textarea>
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div>
+                            <label for="media" class="mb-2">Media</label>
+                        </div>
+                        <!-- *ngFor="let img of media" -->
+                         <div class="d-flex">
+                            <div class="edit-photos" *ngFor="let img of media" >
+                                <img [src]="media2" alt="Image" class="media-img me-2">
+                                <i class="fa-solid fa-xmark remove-icon"></i>
+                                <div class="overlay"></div>
+                            </div>
+                            <div class="add-photo">
+                                <i class="fa-solid fa-plus"></i>
+                            </div>
+                         </div>
+                       
+                    </div>
+                    <!-- buttons -->
+                    <div class="d-flex justify-content-end mt-1 ">
+                        <button class="cancel-btn me-2" routerLink="/profile">Cancel</button>
+                        <button class="edit-btn">Save</button>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
+    </div>
 </section>

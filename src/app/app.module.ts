@@ -18,6 +18,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-layout.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { IncomeComponent } from './components/income/income.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 
 
@@ -37,6 +38,7 @@ import { IncomeComponent } from './components/income/income.component';
     DashboardLayoutComponent,
     NotFoundComponent,
     IncomeComponent,
+    EditProfileComponent,
   ],
   imports: [
     BrowserModule,
