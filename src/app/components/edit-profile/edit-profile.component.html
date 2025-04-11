@@ -82,6 +82,14 @@
                             <label for="phone" class="mb-2">Phone</label>
                             <input type="text" id="phone" class="form-control text-muted" [value]="travelAgencyData.phoneNumber">
                         </div>
+                        <div class="location w-50 me-3">
+                            <label for="location" class="mb-2">Location</label>
+                            <select id="location" class="form-control text-muted" [(ngModel)]="travelAgencyData.description">
+                            <option *ngFor="let location of locations" [value]="travelAgencyData.description">
+                                {{ location }}
+                            </option>
+                            </select>
+                        </div>
                     </div>
                     <div class="d-flex mb-2">
                         <div class="d-block w-100 me-3">

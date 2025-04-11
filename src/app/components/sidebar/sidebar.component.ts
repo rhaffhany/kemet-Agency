@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile.service';
 
@@ -10,7 +10,7 @@ import { ProfileService } from 'src/app/services/profile.service';
 export class SidebarComponent {
 
   constructor(private _ProfileService:ProfileService, private _Router:Router){}
-
+  
   logo:string = '../../../assets/logo/kemet.png'
   kLogo:string = '../../../assets/logo/K.png'
   agencyPP:string = '../../../assets/img/Agency pp.png'
@@ -54,19 +54,53 @@ export class SidebarComponent {
 
   selectItem(path: string) {
     this.selectedItem = path; 
-    this.selectedItem = this._Router.url; // Set the active item on load
+    this.selectedItem = this._Router.url;
   }
 
+  // toggleDropdown() {
+  //   this.isDropdownOpen = !this.isDropdownOpen;
+  // }
+
+  showLogoutPopup: boolean = false;
+
+  toggleLogoutPopup() {
+    this.showLogoutPopup = !this.showLogoutPopup;
+  }
+
+  closePopup(event: MouseEvent) {
+    if (!(event.target as HTMLElement).closest('.logout-popup')) {
+      this.showLogoutPopup = false;
+    }
+  }
   
-  toggleDropdown() {
-    this.isDropdownOpen = !this.isDropdownOpen;
-  }
-
   logout() {
     localStorage.removeItem('token');
     this._Router.navigate(['/login']);
   }
-  
 
+  //speeddial
+  // speedDialVisible: boolean = false;
+
+  // items = [
+  //   {
+  //     label: 'Logout',
+  //     icon: 'fa-solid fa-arrow-right-from-bracket', 
+  //     command: () => this.logout()
+  //   },
+  //   { 
+  //     icon: 'pi pi-user', 
+  //     command: () => alert("Profile clicked") 
+  //   },
+  //   { 
+  //     icon: 'pi pi-cog', 
+  //     command: () => alert("Settings clicked") 
+  //   }
+  // ];
+
+  // toggleSpeedDial() {
+  //   this.speedDialVisible = !this.speedDialVisible;
+  //   console.log("selectedd success", this.speedDialVisible);
+    
+  // }
 
 }
