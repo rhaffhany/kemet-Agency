@@ -1,0 +1,149 @@
+<section>
+
+    <div class="container">
+        <div class="d-flex justify-content-between">
+            <h4><img [src]="kLogo" alt="logo" class="logo">Hello <span class="fw-bold">{{travelAgencyData.userName}},</span></h4>
+    
+            <div class="search-wrapper">
+                <div class="search-container search-group">
+                  <img [src]="searchIcon" alt="searchIcon" class="searchIcon">
+                  <input 
+                    type="text" 
+                    class="search-input" 
+                    placeholder="Search...">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="agency-info bg-white d-flex justify-content-between">
+                    <div class="d-flex">
+                        <img [src]="agencyPP" alt="agency-pp" class="rounded-circle">
+                        <div class="d-block align-content-center ms-3">
+                            <h5 class="mb-0 fw-bold">{{travelAgencyData.userName}}</h5>
+                            <p class="mb-0" style="font-size: 13px;">{{user}}{{travelAgencyData.userName}}</p>
+                        </div>
+                    </div>
+                    <div class="my-auto">
+                        <span *ngFor="let star of [1, 2, 3, 4, 5]; let i = index" class="rate">
+                            <svg width="30" height="30" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                                [style.fill]="i < travelAgencyData.averageRating ? '#FAC817' : '#FFFFFF'"
+                                stroke="currentColor" stroke-width="1"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                        </span>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <div class="package-info p-4 bg-white ">
+                    <div class="d-flex gap-2">
+
+                        <div class="col-md-6">
+                            <div class="name mb-1">
+                                <label for="name" class="mb-2">Name</label>
+                                <input type="text" id="name" class="form-control text-muted" [value]="" >
+                            </div>
+                            <div class="bio">
+                                <label for="bio" class="mb-2">Description</label>
+                                <textarea name="bio" id="bio" class="form-control" rows="4"></textarea>
+                            </div>
+                            <div class="media">
+                                <div>
+                                    <label for="media" class="mb-2">Media</label>
+                                </div>
+                                <!-- *ngFor="let img of media" -->
+                                 <div class="d-flex">
+                                    <div class="edit-photos" *ngFor="let img of media" >
+                                        <img [src]="media2" alt="Image" class="media-img me-2">
+                                        <i class="fa-solid fa-xmark remove-icon"></i>
+                                        <div class="overlay"></div>
+                                    </div>
+                                    <div class="add-photo">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </div>
+                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="location me-3">
+                            <label for="location" class="mb-2">Location</label>
+                            <select id="location" class="form-control text-muted" [(ngModel)]="selectedLocation">
+                                <option value="" disabled selected>Choose location</option>
+                                <option *ngFor="let location of locations" [value]="location">
+                                  {{ location }}
+                                </option>
+                            </select>
+                            </div>
+                            <div class="duration mt-2">
+                                <label for="duration" class="mb-2">Duration</label>
+                                <div id="duration">
+                                    <p-inputNumber
+                                    [(ngModel)]="days"
+                                    mode="decimal"       
+                                    [showButtons]="true"  
+                                    inputId="days-input"
+                                    [min]="1"
+                                    [max]="1000"          
+                                    [step]="1"
+                                    [useGrouping]="false">
+                                    </p-inputNumber>
+                                </div>
+                            </div>
+                            <div class="prices mt-2">
+                                <label for="tourist" class="mb-2">Tourist</label>
+                                <div class="d-flex gap-1">
+                                    <div class="input-group ">
+                                        <span class="input-group-text">£</span>
+                                        <input type="text" class="form-control" placeholder="Student" aria-label="Amount (to the nearest pound)">
+                                        <span class="input-group-text">.00</span>
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-text">£</span>
+                                        <input type="text" class="form-control" placeholder="Student" aria-label="Amount (to the nearest pound)">
+                                        <span class="input-group-text">.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="prices mt-2">
+                                <label for="Egyptian" class="mb-2">Egyptian</label>
+                                <div class="d-flex gap-1">
+                                    <div class="input-group ">
+                                        <span class="input-group-text">£</span>
+                                        <input type="text" class="form-control" placeholder="Student" aria-label="Amount (to the nearest pound)">
+                                        <span class="input-group-text">.00</span>
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-text">£</span>
+                                        <input type="text" class="form-control" placeholder="Student" aria-label="Amount (to the nearest pound)">
+                                        <span class="input-group-text">.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <!-- buttons -->
+                    <div class="d-flex justify-content-end mt-4">
+                        <button class="cancel-btn me-2" routerLink="/profile">Cancel</button>
+                        <button class="edit-btn">Add</button>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

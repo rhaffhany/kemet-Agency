@@ -1,10 +1,16 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChangePipe } from './pipe/change.pipe';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ChartModule } from 'primeng/chart';
+import { PaginatorModule } from 'primeng/paginator';
+import { SpeedDialModule } from 'primeng/speeddial';
+import { InputNumberModule } from 'primeng/inputnumber';
+
 
 import { LoginComponent } from './components/login/login.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
@@ -19,6 +25,8 @@ import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-l
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { IncomeComponent } from './components/income/income.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { AddPackageComponent } from './components/add-package/add-package.component';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -39,14 +47,23 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
     NotFoundComponent,
     IncomeComponent,
     EditProfileComponent,
+    AddPackageComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ChartModule,
+    PaginatorModule,
+    FormsModule,
+    CommonModule,
+    SpeedDialModule,
+    InputNumberModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]  
 })
 export class AppModule { }

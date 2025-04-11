@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
-  selector: 'app-edit-profile',
-  templateUrl: './edit-profile.component.html',
-  styleUrls: ['./edit-profile.component.scss']
+  selector: 'app-add-package',
+  templateUrl: './add-package.component.html',
+  styleUrls: ['./add-package.component.scss']
 })
-export class EditProfileComponent {
+export class AddPackageComponent {
 
   constructor(private _ProfileService:ProfileService){}
   
@@ -15,31 +15,11 @@ export class EditProfileComponent {
   kLogo:string = '../../../assets/logo/K.png'
   media1:string = '../../../assets/img/agency7.jpg'
   media2:string = '../../../assets/img/agency8.jpg'
-
-  user:string = '@'
-  travelAgencyData:any = {};
   media:any[] = [
     this.media1,
     this.media2
   ];
-
-  ngOnInit(): void {
-    this._ProfileService.getTravelAgencyData('GlobalTravel').subscribe({
-      next: (data) => {
-        this.travelAgencyData = data;
-        // this.media = data.plan.$values;
-        console.log(this.media);
-        
-        // this.reviews = data.reviews.$values;
-        // console.log("Reviews",this.reviews);
-        // console.log('Travel Agency Data:', this.travelAgencyData);
-      },
-      error: (err) => {
-        console.error('Error fetching travel agency data:', err);
-      }
-    });
-  }
-
+  selectedLocation: any;
   locations: string[] = [
     'Cairo',
     'Alexandria',
@@ -49,6 +29,23 @@ export class EditProfileComponent {
     'Sharm El Sheikh',
     'Suez'
   ];
+  days: number = 1;
 
+  user:string = '@'
+  travelAgencyData:any = {};
+
+  ngOnInit(): void {
+    this._ProfileService.getTravelAgencyData('GlobalTravel').subscribe({
+      next: (data) => {
+        this.travelAgencyData = data;
+        // this.reviews = data.reviews.$values;
+        // console.log("Reviews",this.reviews);
+        // console.log('Travel Agency Data:', this.travelAgencyData);
+      },
+      error: (err) => {
+        console.error('Error fetching travel agency data:', err);
+      }
+    });
+  }
 
 }
