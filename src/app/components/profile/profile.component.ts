@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit{
 
   user:string = '@'
   travelAgencyData:any = {};
+  travelAgencyDash:any = {};
   media:any[] = [];
 
   ngOnInit(): void {
@@ -23,8 +24,7 @@ export class ProfileComponent implements OnInit{
       next: (data) => {
         this.travelAgencyData = data;
         this.media = data.plan.$values;
-        console.log(this.media);
-        
+        // console.log(this.media);
         // this.reviews = data.reviews.$values;
         // console.log("Reviews",this.reviews);
         // console.log('Travel Agency Data:', this.travelAgencyData);
@@ -33,6 +33,13 @@ export class ProfileComponent implements OnInit{
         console.error('Error fetching travel agency data:', err);
       }
     });
+
+    this._ProfileService.getTravelAgencyDashboard().subscribe({
+      next: (res) =>{
+        this.travelAgencyDash = res;
+      }
+    });
+
   }
 
 }

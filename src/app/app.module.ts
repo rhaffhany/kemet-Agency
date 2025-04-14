@@ -7,9 +7,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartModule } from 'primeng/chart';
+import { CardModule } from 'primeng/card';
 import { PaginatorModule } from 'primeng/paginator';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { InputNumberModule } from 'primeng/inputnumber';
+// import { TableModule } from 'primeng/table';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 import { LoginComponent } from './components/login/login.component';
@@ -58,9 +67,18 @@ import { CommonModule } from '@angular/common';
     ChartModule,
     PaginatorModule,
     FormsModule,
+    CardModule,
     CommonModule,
     SpeedDialModule,
     InputNumberModule,
+    // TableModule,
+    ButtonModule,
+    InputTextModule,
+    MatSortModule,
+    MatTableModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent],

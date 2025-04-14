@@ -19,24 +19,25 @@ export class SidebarComponent {
   selectedItem: string = '';
 
   travelAgencyData:any = {};
-  isDropdownOpen:boolean = false;  
+  travelAgencyDash:any = {};
 
 
   ngOnInit(): void {
 
-    this._ProfileService.getTravelAgencyData('GlobalTravel').subscribe({
+    this._ProfileService.getTravelAgencyDashboard().subscribe({
       next: (data) => {
         this.travelAgencyData = data;
-        // this.reviews = data.reviews.$values;
-        // console.log("Reviews",this.reviews);
-        // console.log('Travel Agency Data:', this.travelAgencyData);
       },
       error: (err) => {
         console.error('Error fetching travel agency data:', err);
       }
     });
+    this._ProfileService.getTravelAgencyDashboard().subscribe({
+      next: (res) =>{
+        this.travelAgencyDash = res;
+      }
+    });
     
-  
   }
 
   menuItems = [
@@ -44,7 +45,7 @@ export class SidebarComponent {
     { label: 'Packages', icon: 'fa fa-box', path: '/packages' },
     { label: 'Customers', icon: 'fa fa-users', path: '/customers' },
     { label: 'Reviews', icon: 'fa-regular fa-star', path: '/reviews' },
-    { label: 'Income', icon: 'fa-solid fa-coins', path: '/income' },
+    // { label: 'Income', icon: 'fa-solid fa-coins', path: '/income' },
     { label: 'Questions', icon: 'fa-regular fa-circle-question', path: '/questions' }
   ];
 
