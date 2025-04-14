@@ -18,6 +18,7 @@ export class EditProfileComponent {
 
   user:string = '@'
   travelAgencyData:any = {};
+  travelAgencyDash:any = {};
   media:any[] = [
     this.media1,
     this.media2
@@ -36,6 +37,12 @@ export class EditProfileComponent {
       },
       error: (err) => {
         console.error('Error fetching travel agency data:', err);
+      }
+    });
+
+    this._ProfileService.getTravelAgencyDashboard().subscribe({
+      next: (res) =>{
+        this.travelAgencyDash = res;
       }
     });
   }

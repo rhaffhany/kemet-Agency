@@ -1,7 +1,7 @@
 <section>
     <div class="container">
         <div class="d-flex justify-content-between">
-            <h4><img [src]="kLogo" alt="logo" class="logo">Hello <span class="fw-bold">{{travelAgencyData.userName}},</span></h4>
+            <h4><img [src]="kLogo" alt="logo" class="logo">Hello <span class="fw-bold">{{travelAgencyDash.userName}},</span></h4>
     
             <div class="search-wrapper">
                 <div class="search-container search-group">
@@ -21,7 +21,7 @@
             <div class="col-md-12">
                 <div class="agency-info bg-white d-flex justify-content-between">
                     <div class="d-flex">
-                        <img [src]="agencyPP" alt="agency-pp" class="rounded-circle">
+                        <img [src]="travelAgencyDash.profileURl" alt="agency-pp" class="rounded-circle">
                         <div class="d-block align-content-center ms-3">
                             <h5 class="mb-0 fw-bold">{{travelAgencyData.userName}}</h5>
                             <p class="mb-0" style="font-size: 13px;">{{user}}{{travelAgencyData.userName}}</p>

@@ -24,29 +24,13 @@
 
 
     <div class="sidebar-footer d-flex">
-      <img [src]="agencyPP" alt="agency-pp" class="me-2 mx-auto rounded-circle" (click)="toggleLogoutPopup()">
+      <img [src]="travelAgencyDash.profileURl" alt="agency-pp" class="me-2 mx-auto rounded-circle" (click)="toggleLogoutPopup()">
       <span *ngIf="!isCollapsed" class="agency-info">
         <div class="d-flex">
           <div class="d-block">
             <p class="mb-0">{{travelAgencyData.userName}}</p>
             <p class="mb-0" style="font-size: 10px;">{{user}}{{travelAgencyData.userName}}</p>
           </div>
-
-         <!-- 
-           <i 
-          class="fa-solid fa-chevron-down ms-5 mt-2 z-3"
-          style="cursor: pointer;"
-          (click)="toggleSpeedDial(); $event.stopPropagation()">
-          </i>
-          <p-speeddial
-            *ngIf="speedDialVisible"
-            [model]="items"
-            direction="up"
-            [style]="{ position: 'absolute', right: '1rem', bottom: '1rem'}"
-            style="width: 300px; height: 500px; z-index: 1000;"
-            [mask]="true">
-          </p-speeddial> -->
-           <!-- Custom Trigger Icon -->
           <i 
             class="fa-solid fa-chevron-down ms-5 mt-2 z-3"
             style="cursor: pointer;"

@@ -33,6 +33,7 @@ export class AddPackageComponent {
 
   user:string = '@'
   travelAgencyData:any = {};
+  travelAgencyDash:any = {};
 
   ngOnInit(): void {
     this._ProfileService.getTravelAgencyData('GlobalTravel').subscribe({
@@ -44,6 +45,11 @@ export class AddPackageComponent {
       },
       error: (err) => {
         console.error('Error fetching travel agency data:', err);
+      }
+    });
+    this._ProfileService.getTravelAgencyDashboard().subscribe({
+      next: (res) =>{
+        this.travelAgencyDash = res;
       }
     });
   }
