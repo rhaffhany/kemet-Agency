@@ -15,9 +15,9 @@ export class ProfileService {
   travelAgencyData:any = {};
 
 
-  getTravelAgencyData(travelAgencyName:any):Observable<any>{
-    return this._HttpClient.get(`${this.DeployURL}/api/TravelAgency?travelAgencyName=${travelAgencyName}`);
-  }
+  // getTravelAgencyData(travelAgencyName:any):Observable<any>{
+  //   return this._HttpClient.get(`${this.DeployURL}/api/TravelAgency?travelAgencyName=${travelAgencyName}`);
+  // }
 
   getTravelAgencyDashboard():Observable<any>{
     const token = this._AuthService.getToken();
@@ -27,6 +27,27 @@ export class ProfileService {
       }
     };
     return this._HttpClient.get(`${this.DeployURL}/api/TravelAgency/GetTravelAgnecyDashboard`, headers);
+  }
+
+  uploadProfileImg(formData: FormData):Observable<any>{
+    const token = this._AuthService.getToken();
+    const headers = {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    };   
+    return this._HttpClient.post(`${this.DeployURL}/api/TravelAgency/upload-profile-image`, formData, headers);
+  }
+
+
+  editTravelAgencyProfile(updatedData: any):Observable<any>{
+    const token = this._AuthService.getToken();
+    const headers = {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    };    
+    return this._HttpClient.put(`${this.DeployURL}/api/TravelAgency/EditTravelAgencyProfile`, updatedData , headers);
   }
 
 }

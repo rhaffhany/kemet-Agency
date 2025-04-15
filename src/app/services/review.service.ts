@@ -21,4 +21,5 @@ constructor(private _HttpClient:HttpClient, private _AuthService:AuthService) { 
     };
     return this._HttpClient.get(`${this.DeployURL}/api/TravelAgency/GetTravelAgencyReviewStats`, headers)
   }
+  
 }

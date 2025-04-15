@@ -1,1 +1,85 @@
-<p>questions works!</p>
+<section>
+
+    <div class="container">
+        <div class="d-flex justify-content-between">
+            <h4><img [src]="kLogo" alt="logo" class="logo">Hello <span class="fw-bold">{{travelAgencyData.userName}},</span></h4>
+    
+            <div class="search-wrapper">
+                <div class="search-container search-group">
+                  <img [src]="searchIcon" alt="searchIcon" class="searchIcon">
+                  <input 
+                    type="text" 
+                    class="search-input" 
+                    placeholder="Search...">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="agency-info bg-white d-flex justify-content-between">
+                    <div class="d-flex">
+                        <img [src]="travelAgencyData.profileURl" alt="agency-pp" class="rounded-circle">
+                        <div class="d-block align-content-center ms-3">
+                            <h5 class="mb-0 fw-bold">{{travelAgencyData.userName}}</h5>
+                            <p class="mb-0" style="font-size: 13px;">{{user}}{{travelAgencyData.userName}}</p>
+                        </div>
+                    </div>
+                    <div class="my-auto">
+                        <span *ngFor="let star of [1, 2, 3, 4, 5]; let i = index" class="rate">
+                            <!-- Full Star -->
+                            <svg *ngIf="i + 1 <= travelAgencyData.averageRating" width="24" height="24" viewBox="0 0 24 24"
+                                 xmlns="http://www.w3.org/2000/svg" fill="#FAC817" stroke="currentColor"
+                                 stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                          
+                            <!-- Half Star -->
+                            <svg *ngIf="i < travelAgencyData.averageRating && i + 1 > travelAgencyData.averageRating" width="24" height="24" viewBox="0 0 24 24"
+                                 xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1"
+                                 stroke-linecap="round" stroke-linejoin="round">
+                              <defs>
+                                <linearGradient id="half-fill" x1="0" x2="1" y1="0" y2="0">
+                                  <stop offset="50%" stop-color="#FAC817"/>
+                                  <stop offset="50%" stop-color="#FFE5C2"/>
+                                </linearGradient>
+                              </defs>
+                              <polygon fill="url(#half-fill)" points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                              <!-- Empty Star -->
+                              <svg *ngIf="i + 1 > travelAgencyData.averageRating" width="24" height="24" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg" fill="#FFFFFF" stroke="currentColor"
+                                stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                        </span>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="support mt-3 py-3 bg-white">
+                    <p class="muted">We're here for you! Reach out anytime at <span class="fw-bold">{{adminEmail}}</span></p>
+                    <div class="row d-flex justify-content-center align-items-center">
+                        <div class="col-md-10">
+                          <textarea id="messageArea" class="form-control email-mess" rows="8" 
+                          [(ngModel)]="message" name="supportMessage">
+                          </textarea>
+                        </div>
+                      </div>
+                    <button class="add-btn d-flex mx-auto mt-3 fw-bold" (click)="sendEmail()">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

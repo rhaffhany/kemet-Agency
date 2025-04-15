@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { ProfileService } from 'src/app/services/profile.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-profile',
@@ -8,45 +9,33 @@ import { ProfileService } from 'src/app/services/profile.service';
 })
 export class EditProfileComponent {
 
-  constructor(private _ProfileService:ProfileService){}
+  constructor(private _ProfileService:ProfileService, private ngZone: NgZone){}
   
   searchIcon: string = "../../../assets/icons/Search.png";
   agencyPP:string = '../../../assets/img/Agency pp.png'
   kLogo:string = '../../../assets/logo/K.png'
   media1:string = '../../../assets/img/agency7.jpg'
   media2:string = '../../../assets/img/agency8.jpg'
-
-  user:string = '@'
-  travelAgencyData:any = {};
-  travelAgencyDash:any = {};
   media:any[] = [
     this.media1,
     this.media2
   ];
 
-  ngOnInit(): void {
-    this._ProfileService.getTravelAgencyData('GlobalTravel').subscribe({
-      next: (data) => {
-        this.travelAgencyData = data;
-        // this.media = data.plan.$values;
-        console.log(this.media);
-        
-        // this.reviews = data.reviews.$values;
-        // console.log("Reviews",this.reviews);
-        // console.log('Travel Agency Data:', this.travelAgencyData);
-      },
-      error: (err) => {
-        console.error('Error fetching travel agency data:', err);
-      }
-    });
 
-    this._ProfileService.getTravelAgencyDashboard().subscribe({
-      next: (res) =>{
-        this.travelAgencyDash = res;
-      }
-    });
-  }
+  user:string = '@'
 
+  profileImg:string = '../../../assets/img/default-profile.png';
+  newProfileImgPreview: string = '';
+  newProfileImgFile: File | null = null;
+
+  profileImgLoading = false;
+  isEdited = false;
+  isLoading = false;
+
+  travelAgencyDash:any = {};
+  updatedData:any = {...this.travelAgencyDash};
+
+  
   locations: string[] = [
     'Cairo',
     'Alexandria',
@@ -57,5 +46,97 @@ export class EditProfileComponent {
     'Suez'
   ];
 
+
+  ngOnInit(): void {
+    this._ProfileService.getTravelAgencyDashboard().subscribe({
+      next: (res) =>{
+        this.travelAgencyDash = res;
+        this.updatedData= {...this.travelAgencyDash};
+        console.log("updated data:",this.updatedData);
+      }
+    });
+  }
+
+  uploadProfileImg(event:any):void{
+    const file = event.target.files[0];
+    if (!file) {
+      console.error('No file selected!');
+      return;
+    }
+
+    this.profileImgLoading = true;
+
+    const formData:FormData = new FormData();
+    formData.append('model',file);
+
+    this._ProfileService.uploadProfileImg(formData).subscribe({
+      next:(res) =>{
+        this.profileImg = `http://kemet-server.runasp.net/${res.filePath}`;
+        this.isEdited = true;
+        setTimeout(() => {
+          this.profileImg = URL.createObjectURL(file);
+          this.profileImgLoading = false; 
+        }, 2000);
+        Swal.fire({
+          title: 'Success!',
+          text: 'Your profile photo has been updated successfully.',
+          icon: 'success',
+          confirmButtonText: 'OK',
+          confirmButtonColor: 'var(--secondaryColor)',
+        });
+      },
+      error:()=>{
+        this.profileImgLoading = false; 
+      }
+    });
+
+  }
+
+  onEdit(): void {
+    this.isEdited = true;
+  }  
+
+  updateAgencyData(): void{
+    if (!this.isEdited) return;
+    this.isLoading = true;
+
+    this._ProfileService.editTravelAgencyProfile(this.updatedData).subscribe({
+      next: (response)=>{
+
+        this.travelAgencyDash = {...this.updatedData};
+        this.updatedData = response;
+        this.isEdited = false;
+
+        Swal.fire({
+          title: 'Success!',
+          text: 'Your profile has been updated successfully.',
+          icon: 'success',
+          confirmButtonText: 'OK',
+          confirmButtonColor: 'var(--secondaryColor)',
+        });
+
+        this.ngZone.runOutsideAngular(() => {
+          setTimeout(() => {
+            location.reload();
+          }, 2000); 
+        });
+        
+      },
+      error: (err)=>{
+        console.error("error updating:",err);
+        Swal.fire({
+          title: 'Error!',
+          text: 'There was an issue updating your profile. Please try again later.',
+          icon: 'error',
+          confirmButtonText: 'OK',
+          confirmButtonColor: '#d33',
+        });
+      },
+      complete: () =>{
+        this.isLoading = false;
+      }
+    });
+
+  }
 
 }

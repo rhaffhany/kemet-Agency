@@ -20,11 +20,12 @@ export class PackagesComponent implements OnInit{
 
   ngOnInit(): void {
     this.data = {
+      // a3la 3 plans w others
       labels: ['Entertainment', 'Bill Expense', 'Investment', 'Others'],
       datasets: [
         {
           // label: 'User Types',
-          data: [300, 150, 200, 80],
+          data: [300, 300, 300, 300],
           backgroundColor: [
             '#343C6A',
             '#FC7900',
@@ -45,8 +46,8 @@ export class PackagesComponent implements OnInit{
     };
 
     this._PackageService.getPackages().subscribe({
-      next:(res)=>{
-        this.packages = res.$values;        
+      next:(res)=>{        
+        this.packages = res.plans.$values;                
       },
     });
 
