@@ -32,7 +32,7 @@ export class CustomersComponent implements OnInit , AfterViewInit  {
   rows: number = 4; 
   first: number = 0;
 
-  customers:any[] = [];
+  // customers:any[] = [];
   
   ngOnInit(): void {
 
@@ -52,14 +52,13 @@ export class CustomersComponent implements OnInit , AfterViewInit  {
   }
 
 //lhad ma api yegy
-    // customers = [
-    //   { name: 'John Doe', date:'1-4-2003', package: 'Premium', phone: '123456789', email: 'john@example.com', nationality: 'USA', category: 'VIP' },
-    //   { name: 'Jane Doe', date:'1-4-2021', package: 'Basic', phone: '987654321', email: 'jane@example.com', nationality: 'UK', category: 'Regular' },       
-    //   { name: 'John Doe', date:'23-4-2010', package: 'Premium', phone: '123456789', email: 'john@example.com', nationality: 'USA', category: 'VIP' },
-    //   { name: 'Jane Doe', date:'20-1-2025', package: 'Basic', phone: '987654321', email: 'jane@example.com', nationality: 'UK', category: 'Regular' }, 
-    //   { name: 'John Doe', date:'2-5-2024', package: 'Premium', phone: '123456789', email: 'john@example.com', nationality: 'USA', category: 'VIP' },        
-    //   { name: 'Jane Doe', date:'3-8-2024', package: 'Basic', phone: '987654321', email: 'jane@example.com', nationality: 'UK', category: 'Regular' },
-    // ];
+    customers = [
+      { name: 'John Doe', date:'1-4-2003', package: 'Premium', phone: '123456789', email: 'john@example.com', nationality: 'USA', category: 'VIP' },
+      { name: 'Jane Doe', date:'1-4-2021', package: 'Basic', phone: '987654321', email: 'jane@example.com', nationality: 'UK', category: 'Regular' },       
+      { name: 'John Doe', date:'23-4-2010', package: 'Premium', phone: '123456789', email: 'john@example.com', nationality: 'USA', category: 'VIP' },
+      { name: 'Jane Doe', date:'20-1-2025', package: 'Basic', phone: '987654321', email: 'jane@example.com', nationality: 'UK', category: 'Regular' }, 
+      { name: 'John Doe', date:'2-5-2024', package: 'Premium', phone: '123456789', email: 'john@example.com', nationality: 'USA', category: 'VIP' },        
+    ];
     displayedColumns = ['name', 'date', 'package', 'phone', 'email', 'nationality', 'category'];
     dataSource = new MatTableDataSource(this.customers);
 

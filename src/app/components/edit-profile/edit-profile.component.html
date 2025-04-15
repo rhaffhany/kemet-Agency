@@ -21,73 +21,77 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="agency-info bg-white d-flex justify-content-between">
+
                     <div class="d-flex">
-                        <img [src]="travelAgencyDash.profileURl" alt="agency-pp" class="rounded-circle">
+                        <div class="blur-wrapper position-relative">
+                            <img [src]="travelAgencyDash.profileURl || profileImg" (onchange)="onEdit()" alt="agency-pp" class="profile-img rounded-circle">
+                            
+                            <div class="blur-overlay position-absolute w-100 h-100 rounded-circle"></div>
+                          
+                            <div class="update-icons position-absolute top-50 start-50 translate-middle d-flex justify-content-center align-items-center">
+                              <input type="file" #fileInput (change)="uploadProfileImg($event)" hidden>
+                              <i *ngIf="!profileImgLoading" class="fa-solid fa-pen-to-square" role="button" (click)="fileInput.click()"></i>
+                              <i *ngIf="profileImgLoading" class="fas fa-spinner fa-spin"></i>
+                            </div>
+                          </div>
+                          
                         <div class="d-block align-content-center ms-3">
-                            <h5 class="mb-0 fw-bold">{{travelAgencyData.userName}}</h5>
-                            <p class="mb-0" style="font-size: 13px;">{{user}}{{travelAgencyData.userName}}</p>
+                            <h5 class="mb-0 fw-bold">{{travelAgencyDash.userName}}</h5>
+                            <p class="mb-0" style="font-size: 13px;">{{user}}{{travelAgencyDash.userName}}</p>
                         </div>
                     </div>
+
                     <div class="my-auto">
                         <span *ngFor="let star of [1, 2, 3, 4, 5]; let i = index" class="rate">
-                            <svg width="30" height="30" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg"
-                                [style.fill]="i < travelAgencyData.averageRating ? '#FAC817' : '#FFFFFF'"
-                                stroke="currentColor" stroke-width="1"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            <!-- Full Star -->
+                            <svg *ngIf="i + 1 <= travelAgencyDash.averageRating" width="24" height="24" viewBox="0 0 24 24"
+                                 xmlns="http://www.w3.org/2000/svg" fill="#FAC817" stroke="currentColor"
+                                 stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                          
+                            <!-- Half Star -->
+                            <svg *ngIf="i < travelAgencyDash.averageRating && i + 1 > travelAgencyDash.averageRating" width="24" height="24" viewBox="0 0 24 24"
+                                 xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1"
+                                 stroke-linecap="round" stroke-linejoin="round">
+                              <defs>
+                                <linearGradient id="half-fill" x1="0" x2="1" y1="0" y2="0">
+                                  <stop offset="50%" stop-color="#FAC817"/>
+                                  <stop offset="50%" stop-color="#FFE5C2"/>
+                                </linearGradient>
+                              </defs>
+                              <polygon fill="url(#half-fill)" points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                              <!-- Empty Star -->
+                              <svg *ngIf="i + 1 > travelAgencyDash.averageRating" width="24" height="24" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg" fill="#FFFFFF" stroke="currentColor"
+                                stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                             </svg>
                         </span>
-                         <!-- <span *ngFor="let star of [1, 2, 3, 4, 5]; let i = index" class="rate">
-                    </div>
-
-                        <svg *ngIf="i + 1 <= travelAgencyData.averageRating" width="24" height="24" viewBox="0 0 24 24"
-                             xmlns="http://www.w3.org/2000/svg" fill="#FAC817" stroke="currentColor"
-                             stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                        </svg>
-                      
-                        <svg *ngIf="i < travelAgencyData.averageRating && i + 1 > travelAgencyData.averageRating" width="24" height="24" viewBox="0 0 24 24"
-                             xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1"
-                             stroke-linecap="round" stroke-linejoin="round">
-                          <defs>
-                            <linearGradient id="half-fill" x1="0" x2="1" y1="0" y2="0">
-                              <stop offset="50%" stop-color="#FAC817"/>
-                              <stop offset="50%" stop-color="#FFE5C2"/>
-                            </linearGradient>
-                          </defs>
-                          <polygon fill="url(#half-fill)" points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                        </svg>
-                          <svg *ngIf="i + 1 > travelAgencyData.averageRating" width="24" height="24" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg" fill="#FFE5C2" stroke="currentColor"
-                            stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                        </svg>
-                    </span> -->
-                    </div>
-                   
+                    </div>                   
                 </div>
             </div>
         </div>
 
-        <div class="row mt-3">
+        <div class="row mt-5">
             <div class="col-md-12">
                 <div class="profile-info p-4 bg-white">
                     <div class="d-flex mb-2">
                         <div class="username w-50 me-4">
                             <label for="name" class="mb-2">Name</label>
-                            <input type="text" id="name" class="form-control text-muted" [value]="travelAgencyData.userName" disabled>
+                            <input type="text" id="name" class="form-control text-muted" [value]="travelAgencyDash.userName" style="cursor: not-allowed;" disabled>
                         </div>
                         <div class="phone w-50 me-3">
                             <label for="phone" class="mb-2">Phone</label>
-                            <input type="text" id="phone" class="form-control text-muted" [value]="travelAgencyData.phoneNumber">
+                            <input type="text" id="phone" class="form-control text-muted" [(ngModel)]="travelAgencyDash.phoneNumber" (ngModelChange)="onEdit()">
                         </div>
                         <div class="location w-50 me-3">
                             <label for="location" class="mb-2">Location</label>
-                            <select id="location" class="form-control text-muted" [(ngModel)]="travelAgencyData.description">
-                            <option *ngFor="let location of locations" [value]="travelAgencyData.description">
-                                {{ location }}
-                            </option>
+                            <select id="location" class="form-control text-muted" [(ngModel)]="updatedData.address" (ngModelChange)="onEdit()">
+                                <option *ngFor="let location of locations" [value]="location">
+                                    {{ location }}
+                                </option>
                             </select>
                         </div>
                     </div>
@@ -95,23 +99,26 @@
                         <div class="d-block w-100 me-3">
                             <div class="website mb-2">
                                 <label for="website" class="mb-2">Facebook Website</label>
-                                <input type="url" id="website" class="form-control text-muted" [value]="travelAgencyData.facebookURL">
+                                <input type="url" id="website" class="form-control text-muted" [(ngModel)]="updatedData.facebookURL" (ngModelChange)="onEdit()">
                             </div>
                             <div class="website">
                                 <label for="website" class="mb-2">Instagram Website</label>
-                                <input type="url" id="website" class="form-control text-muted" [value]="travelAgencyData.instagramURL">
+                                <input type="url" id="website" class="form-control text-muted" [(ngModel)]="updatedData.instagramURL" (ngModelChange)="onEdit()">
                             </div>
                         </div>
-                        <div class="bio w-100">
+                        <div class="bio w-100 me-3">
                             <label for="bio" class="mb-2">Bio</label>
-                            <textarea name="bio" id="bio" class="form-control" rows="4" >{{travelAgencyData.description}}</textarea>
+                            <textarea name="bio" id="bio" class="form-control" rows="4" [(ngModel)]="updatedData.bio" (ngModelChange)="onEdit()"></textarea>
+                        </div>
+                        <div class="bio w-100">
+                            <label for="bio" class="mb-2">Description</label>
+                            <textarea name="bio" id="bio" class="form-control" rows="4" [(ngModel)]="updatedData.description" (ngModelChange)="onEdit()" ></textarea>
                         </div>
                     </div>
-                    <div class="media">
+                    <!-- <div class="media">
                         <div>
                             <label for="media" class="mb-2">Media</label>
                         </div>
-                        <!-- *ngFor="let img of media" -->
                          <div class="d-flex">
                             <div class="edit-photos" *ngFor="let img of media" >
                                 <img [src]="media2" alt="Image" class="media-img me-2">
@@ -123,11 +130,19 @@
                             </div>
                          </div>
                        
-                    </div>
+                    </div> -->
                     <!-- buttons -->
-                    <div class="d-flex justify-content-end mt-1 ">
+                    <div class="d-flex justify-content-end mt-5">
                         <button class="cancel-btn me-2" routerLink="/profile">Cancel</button>
-                        <button class="edit-btn">Save</button>
+                        <button class="edit-btn" aria-label="Close" type="submit" [disabled]="!isEdited || isLoading" (click)="updateAgencyData()">
+                            <ng-container *ngIf="isLoading">
+                                <i class="fas fa-spinner fa-spin me-1"></i>
+                                Saving...
+                                </ng-container>
+                                <ng-container *ngIf="!isLoading">
+                                    Save
+                                </ng-container>
+                        </button>
                     </div>
                 </div>
             </div>

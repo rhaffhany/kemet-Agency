@@ -17,15 +17,15 @@
     </div>
     
     <div class="container ">
-        <div class="row gap-5 mt-3">
+        <div class="row gap-5 mt-3 justify-content-center">
 
-            <div class="col-lg-7 col-md-8 col-sm-8">
+            <div class="col-lg-4 col-md-4 col-sm-4">
                 <div class="reviews-avg-box bg-white p-4" style="border-radius: 20px;">
 
                     <div class="d-flex align-items-center">
-                        <h3 class="fw-bolder me-2 mb-0">{{4.5}}</h3>
-                        <!-- <span *ngFor="let star of [1, 2, 3, 4, 5]; let i = index" class="rate">
-                            <svg *ngIf="i + 1 <= reviews.averageRating" width="24" height="24" viewBox="0 0 24 24"
+                        <h3 class="fw-bolder me-2 mb-0">{{travelAgencyDash.averageRating}}</h3>
+                        <span *ngFor="let star of [1, 2, 3, 4, 5]; let i = index" class="rate">
+                            <!-- <svg *ngIf="i + 1 <= reviews.rating" width="24" height="24" viewBox="0 0 24 24"
                                  xmlns="http://www.w3.org/2000/svg" fill="#FAC817" stroke="currentColor"
                                  stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
@@ -47,48 +47,62 @@
                                 xmlns="http://www.w3.org/2000/svg" fill="#FFFFFF" stroke="currentColor"
                                 stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
+                            </svg> -->
 
                         </span> 
-                        -->
+                    
                     </div>
 
-                    <div class="rating-rate d-block align-items-center p-2">                          
+                    <div class="rating-rate p-2"> 
+
                         <div class="rating-box d-flex align-items-center gap-2 ">
-                            <h4 class="m-0" style="font-size: 20px;" >5</h4>
+                            <h4 class="m-0" style="font-size: 20px;">5</h4>
                             <!-- <div class="progress mb-1 w-100" role="progressbar" aria-label="Basic example" style="height: 10px; width: 323px;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
                                 <div class="progress-bar" style="width: 75%; border-radius: 20px; background-color: rgba(255, 189, 103, 1);"></div>
                             </div> -->
-                            <div class="satisfaction-bar">
+
+                            <div class="satisfaction-bar flex-grow-1">
                                 <div class="bar-fill" [style.width.%]="satisfactionRate">
                                   <span>{{ satisfactionRate }}%</span>
                                 </div>
-                              </div>
+                            </div>
                               
                         </div>
                         <div class="rating-box d-flex align-items-center gap-2">
                             <h4 class="m-0" style="font-size: 20px;">4</h4>
-                            <div class="progress mb-1 w-100" role="progressbar" aria-label="Basic example" style="height: 10px; width: 323px;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                <div class="progress-bar" style="width: 30%; border-radius: 20px; background-color: rgba(255, 189, 103, 1);"></div>
+                            <div class="satisfaction-bar flex-grow-1">
+                                <div class="bar-fill" [style.width.%]="satisfactionRate">
+                                  <span>{{ satisfactionRate }}%</span>
+                                </div>
                             </div>
+                              
                         </div>
                         <div class="rating-box d-flex align-items-center gap-2">
                             <h4 class="m-0" style="font-size: 20px;">3</h4>
-                            <div class="progress mb-1 w-100" role="progressbar" aria-label="Basic example" style="height: 10px; width: 323px;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                <div class="progress-bar" style="width: 20%; border-radius: 20px; background-color: rgba(255, 189, 103, 1);"></div>
+                            <div class="satisfaction-bar flex-grow-1">
+                                <div class="bar-fill" [style.width.%]="satisfactionRate">
+                                  <span>{{ satisfactionRate }}%</span>
+                                </div>
                             </div>
+                              
                         </div>
                         <div class="rating-box d-flex align-items-center gap-2">
                             <h4 class="m-0" style="font-size: 20px;">2</h4>
-                            <div class="progress mb-1 w-100" role="progressbar" aria-label="Basic example" style="height: 10px; width: 323px;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                <div class="progress-bar" style="width: 5%; border-radius: 20px; background-color: rgba(255, 189, 103, 1);"></div>
+                            <div class="satisfaction-bar flex-grow-1">
+                                <div class="bar-fill" [style.width.%]="satisfactionRate">
+                                  <span>{{ satisfactionRate }}%</span>
+                                </div>
                             </div>
+                              
                         </div>
                         <div class="rating-box d-flex align-items-center gap-2">
                             <h4 class="m-0" style="font-size: 20px;">1</h4>
-                            <div class="progress mb-1 w-100" role="progressbar" aria-label="Basic example" style="height: 10px; width: 323px;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                <div class="progress-bar" style="width: 25%; border-radius: 20px; background-color: rgba(255, 189, 103, 1);"></div>
+                            <div class="satisfaction-bar flex-grow-1">
+                                <div class="bar-fill" [style.width.%]="satisfactionRate">
+                                  <span>{{ satisfactionRate }}%</span>
+                                </div>
                             </div>
+                              
                         </div>
                     </div>
                     
@@ -106,12 +120,12 @@
                                    a 15.9155 15.9155 0 0 1 0 -31.831"/>
                           
                           <path class="circle"
-                                [attr.stroke-dasharray]="satisfactionRate + ', 100'"
+                                [attr.stroke-dasharray]="ratingStats + ', 100'"
                                 d="M18 2.0845
                                    a 15.9155 15.9155 0 0 1 0 31.831
                                    a 15.9155 15.9155 0 0 1 0 -31.831"/>
                       
-                          <text x="18" y="20.35" class="percentage">{{ satisfactionRate }}%</text>
+                          <text x="18" y="20.35" class="percentage">{{ ratingStats }}%</text>
                         </svg>
                     </div>
                     <!-- emoji -->

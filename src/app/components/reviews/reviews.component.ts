@@ -23,7 +23,7 @@ export class ReviewsComponent implements OnInit {
 
   data: any;
   options: any;
-  totalReviews = 100; // Replace with API data
+  // totalReviews = 100; // Replace with API data
 
   satisfactionRate = 60; // just bind this dynamically later if you like
 

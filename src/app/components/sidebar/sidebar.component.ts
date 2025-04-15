@@ -15,7 +15,7 @@ export class SidebarComponent {
   kLogo:string = '../../../assets/logo/K.png'
   agencyPP:string = '../../../assets/img/Agency pp.png'
   user:string = '@'
-  isCollapsed:boolean = false;
+  isCollapsed:boolean = true;
   selectedItem: string = '';
 
   travelAgencyData:any = {};
@@ -46,7 +46,7 @@ export class SidebarComponent {
     { label: 'Customers', icon: 'fa fa-users', path: '/customers' },
     { label: 'Reviews', icon: 'fa-regular fa-star', path: '/reviews' },
     // { label: 'Income', icon: 'fa-solid fa-coins', path: '/income' },
-    { label: 'Questions', icon: 'fa-regular fa-circle-question', path: '/questions' }
+    { label: 'Help', icon: 'fa-regular fa-circle-question', path: '/questions' }
   ];
 
   toggleSidebar() {
@@ -58,50 +58,14 @@ export class SidebarComponent {
     this.selectedItem = this._Router.url;
   }
 
-  // toggleDropdown() {
-  //   this.isDropdownOpen = !this.isDropdownOpen;
-  // }
-
-  showLogoutPopup: boolean = false;
-
-  toggleLogoutPopup() {
-    this.showLogoutPopup = !this.showLogoutPopup;
-  }
-
-  closePopup(event: MouseEvent) {
-    if (!(event.target as HTMLElement).closest('.logout-popup')) {
-      this.showLogoutPopup = false;
-    }
-  }
-  
   logout() {
-    localStorage.removeItem('token');
-    this._Router.navigate(['/login']);
+    const confirmed = confirm('Are you sure you want to logout?');
+    if (confirmed) {
+      localStorage.removeItem('token');
+      this._Router.navigate(['/login']);
+    }
+   
   }
 
-  //speeddial
-  // speedDialVisible: boolean = false;
-
-  // items = [
-  //   {
-  //     label: 'Logout',
-  //     icon: 'fa-solid fa-arrow-right-from-bracket', 
-  //     command: () => this.logout()
-  //   },
-  //   { 
-  //     icon: 'pi pi-user', 
-  //     command: () => alert("Profile clicked") 
-  //   },
-  //   { 
-  //     icon: 'pi pi-cog', 
-  //     command: () => alert("Settings clicked") 
-  //   }
-  // ];
-
-  // toggleSpeedDial() {
-  //   this.speedDialVisible = !this.speedDialVisible;
-  //   console.log("selectedd success", this.speedDialVisible);
-    
-  // }
 
 }

@@ -20,21 +20,25 @@
                   <th>Package Name</th>
                   <th>Location</th>
                   <th>Duration</th>
-                  <th>Tr. Adult</th>
+                  <th>description</th>
+                  <th>Availability</th>
+                  <!-- <th>Tr. Adult</th>
                   <th>Tr. Student</th>
                   <th>eg. Adult</th>
-                  <th>eg. Student</th>
+                  <th>eg. Student</th> -->
                 </tr>
               </thead>
               <tbody *ngFor="let package of paginatedPackages">
                 <tr>
                   <td>{{package.planName}}</td>
-                  <td>{{package.description}}</td>
+                  <td>{{package.planLocation}}</td>
                   <td>{{package.duration}} days</td>
-                  <td>{{package.touristAdult | currency:'£'}}</td>
+                  <td>{{package.description}}</td>
+                  <td>{{package.planAvailability}}</td>
+                  <!-- <td>{{package.touristAdult | currency:'£'}}</td>
                   <td>{{package.touristStudent | currency:'£'}}</td>
                   <td>{{package.egyptianStudent | currency:'£'}}</td>
-                  <td>{{package.egyptianStudent | currency:'£'}}</td>
+                  <td>{{package.egyptianStudent | currency:'£'}}</td> -->
                 </tr>
               </tbody>
             </table>
