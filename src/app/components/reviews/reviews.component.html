@@ -3,16 +3,6 @@
     <div class="container">
         <div class="d-flex justify-content-between">
             <h4><img [src]="kLogo" alt="logo" class="logo">Hello <span class="fw-bold">{{travelAgencyDash.userName}},</span></h4>
-    
-            <div class="search-wrapper">
-                <div class="search-container search-group">
-                  <img [src]="searchIcon" alt="searchIcon" class="searchIcon">
-                  <input 
-                    type="text" 
-                    class="search-input" 
-                    placeholder="Search...">
-                </div>
-            </div>
         </div>
     </div>
     
@@ -25,13 +15,13 @@
                     <div class="d-flex align-items-center">
                         <h3 class="fw-bolder me-2 mb-0">{{travelAgencyDash.averageRating}}</h3>
                         <span *ngFor="let star of [1, 2, 3, 4, 5]; let i = index" class="rate">
-                            <!-- <svg *ngIf="i + 1 <= reviews.rating" width="24" height="24" viewBox="0 0 24 24"
+                            <svg *ngIf="i + 1 <= travelAgencyDash.averageRating" width="24" height="24" viewBox="0 0 24 24"
                                  xmlns="http://www.w3.org/2000/svg" fill="#FAC817" stroke="currentColor"
                                  stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                             </svg>
                           
-                            <svg *ngIf="i < reviews.averageRating && i + 1 > reviews.averageRating" width="24" height="24" viewBox="0 0 24 24"
+                            <svg *ngIf="i < travelAgencyDash.averageRating && i + 1 > travelAgencyDash.averageRating" width="24" height="24" viewBox="0 0 24 24"
                                  xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1"
                                  stroke-linecap="round" stroke-linejoin="round">
                               <defs>
@@ -43,13 +33,13 @@
                               <polygon fill="url(#half-fill)" points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                             </svg>
 
-                            <svg *ngIf="i + 1 > reviews.averageRating" width="24" height="24" viewBox="0 0 24 24"
+                            <svg *ngIf="i + 1 > travelAgencyDash.averageRating" width="24" height="24" viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg" fill="#FFFFFF" stroke="currentColor"
                                 stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg> -->
+                            </svg>
 
-                        </span> 
+                        </span>
                     
                     </div>
 
@@ -57,13 +47,9 @@
 
                         <div class="rating-box d-flex align-items-center gap-2 ">
                             <h4 class="m-0" style="font-size: 20px;">5</h4>
-                            <!-- <div class="progress mb-1 w-100" role="progressbar" aria-label="Basic example" style="height: 10px; width: 323px;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                <div class="progress-bar" style="width: 75%; border-radius: 20px; background-color: rgba(255, 189, 103, 1);"></div>
-                            </div> -->
 
                             <div class="satisfaction-bar flex-grow-1">
-                                <div class="bar-fill" [style.width.%]="satisfactionRate">
-                                  <span>{{ satisfactionRate }}%</span>
+                                <div class="bar-fill" [style.width.%]="ratingPercents[1]">
                                 </div>
                             </div>
                               
@@ -71,8 +57,7 @@
                         <div class="rating-box d-flex align-items-center gap-2">
                             <h4 class="m-0" style="font-size: 20px;">4</h4>
                             <div class="satisfaction-bar flex-grow-1">
-                                <div class="bar-fill" [style.width.%]="satisfactionRate">
-                                  <span>{{ satisfactionRate }}%</span>
+                                <div class="bar-fill" [style.width.%]="ratingPercents[2]">
                                 </div>
                             </div>
                               
@@ -80,8 +65,7 @@
                         <div class="rating-box d-flex align-items-center gap-2">
                             <h4 class="m-0" style="font-size: 20px;">3</h4>
                             <div class="satisfaction-bar flex-grow-1">
-                                <div class="bar-fill" [style.width.%]="satisfactionRate">
-                                  <span>{{ satisfactionRate }}%</span>
+                                <div class="bar-fill" [style.width.%]="ratingPercents[3]">
                                 </div>
                             </div>
                               
@@ -89,8 +73,7 @@
                         <div class="rating-box d-flex align-items-center gap-2">
                             <h4 class="m-0" style="font-size: 20px;">2</h4>
                             <div class="satisfaction-bar flex-grow-1">
-                                <div class="bar-fill" [style.width.%]="satisfactionRate">
-                                  <span>{{ satisfactionRate }}%</span>
+                                <div class="bar-fill" [style.width.%]="ratingPercents[4]">
                                 </div>
                             </div>
                               
@@ -98,8 +81,7 @@
                         <div class="rating-box d-flex align-items-center gap-2">
                             <h4 class="m-0" style="font-size: 20px;">1</h4>
                             <div class="satisfaction-bar flex-grow-1">
-                                <div class="bar-fill" [style.width.%]="satisfactionRate">
-                                  <span>{{ satisfactionRate }}%</span>
+                                <div class="bar-fill" [style.width.%]="ratingPercents[5]">
                                 </div>
                             </div>
                               
@@ -120,24 +102,18 @@
                                    a 15.9155 15.9155 0 0 1 0 -31.831"/>
                           
                           <path class="circle"
-                                [attr.stroke-dasharray]="ratingStats + ', 100'"
+                                [attr.stroke-dasharray]="satisfactionRate + ', 100'"
                                 d="M18 2.0845
                                    a 15.9155 15.9155 0 0 1 0 31.831
                                    a 15.9155 15.9155 0 0 1 0 -31.831"/>
                       
-                          <text x="18" y="20.35" class="percentage">{{ ratingStats }}%</text>
+                          <text x="18" y="20.35" class="percentage">{{ satisfactionRate }}%</text>
                         </svg>
                     </div>
                     <!-- emoji -->
                     <div class="emoji-rating">
-                        <span>😡</span>
-                        <span>😕</span>
-                        <span>😐</span>
-                        <span>😊</span>
-                        <span>😍</span>
-                      </div>
-                      
-                      
+                        <span>{{ getEmojiForSatisfaction(satisfactionRate) }}</span>
+                    </div>
                     
                 </div>
             </div>
@@ -149,43 +125,57 @@
      <div class="container mt-4">
         <div class="row d-flex justify-content-center align-content-center">
             <div class="col-md-10">
-                <div class="reviews-container">
+                <div class="reviews-containers ">
 
                     <div class="col-md-12">
 
-                    <div class="search-bar p-2">
-                        <img [src]="searchIcon" alt="searchIcon" class="search-icon">
-                        <input type="text" class="search-input w-100" placeholder="Search reviews" />
-                    </div>
-
-                    <div *ngIf="errorMessage" class="error-message text-center">
-                        {{ errorMessage }}
-                    </div>
-                    <div *ngIf="searchResults.length > 0" id="searchResults">
-                        <div *ngFor="let result of searchResults" class="result-item  text-center">
-                        {{ result.name }}
+                        <div class="search-bar p-2">
+                            <img [src]="searchIcon" alt="searchIcon" class="search-icon">
+                            <input
+                            type="search"
+                            class="search-input w-100"
+                            placeholder="Search reviews"
+                            [(ngModel)]="searchText"
+                            (input)="onSearch()"
+                          />
                         </div>
-
-                    </div>
-
-                    <div class="filter-reviews">
-                        <button class="mt-3 me-2">Filters</button>
-                        <button class="mt-3">Most Recent</button>
-                    </div>
-
+        
+                        <div *ngIf="errorMessage" class="error-message text-center text-danger pt-2">
+                            {{ errorMessage }}
+                          </div>
+                          <div *ngIf="searchResults.length > 0" id="searchResults">
+                            <div *ngFor="let result of searchResults" class="result-item  text-center ">
+                              {{ result.name }}
+                            </div>
+                        </div>
+        
+                        <div class="filter-reviews ">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <button class="mt-3 me-2" (click)="toggleFilterOptions = !toggleFilterOptions">Filters</button>
+                                    <button class="mt-3" (click)="sortByMostRecent()">Most Recent</button>
+                                </div>
+                              
+                                <button class="mt-3 mx-1" (click)="resetFilters()">Reset</button>
+                            </div>
+                            
+                          
+                            <div *ngIf="toggleFilterOptions" class="mt-2 ">
+                              <button class="me-2 btn btn-outline-secondary" (click)="filterByRating('high')">Highest Rating</button>
+                              <button class="btn btn-outline-secondary" (click)="filterByRating('low')">Lowest Rating</button>
+                            </div>
+                        </div>
                     
                     <div class="reviews-container " style="max-height: 400px; overflow-y: auto;">
                         <div class="reviews mt-3 bg-light bg-light-subtle p-4" 
-                            *ngFor="let review of reviews" 
+                            *ngFor="let review of reviews | reviewFilter: searchText" 
                             style="border-radius: 20px;">
                                         
                             <div class="profile-info d-flex justify-content-between">
                                 <div class="d-flex">
-                                    <!-- <img [src]="review?.userImageURl " 
+                                    <img [src]="review.userImageURl || profileImg " 
                                         class="profile-pic rounded-circle" 
-                                        alt="profile-pic"
-                                        (error)="handleImageError($event)"
-                                        (change)="uploadProfileImg($event)"> -->
+                                        alt="profile-pic">
                                     <div class="ms-2 d-block">
                                         <p class="fw-bold m-0">{{review.username}}</p>
                                         <p class="m-0">{{review.nationality}}</p>

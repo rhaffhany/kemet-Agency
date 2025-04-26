@@ -3,20 +3,10 @@
     <div class="container">
         <div class="d-flex justify-content-between">
             <h4><img [src]="kLogo" alt="logo" class="logo">Hello <span class="fw-bold">{{travelAgencyData.userName}},</span></h4>
-    
-            <div class="search-wrapper">
-                <div class="search-container search-group">
-                  <img [src]="searchIcon" alt="searchIcon" class="searchIcon">
-                  <input 
-                    type="text" 
-                    class="search-input" 
-                    placeholder="Search...">
-                </div>
-            </div>
         </div>
     </div>
 
-    <div class="container mt-2">
+    <div class="container ">
 
         <div class="row">
             <div class="col-md-12">
@@ -71,24 +61,21 @@
                             <div class="picture">
                                 <div>
                                   <label for="pic" class="mb-2">Plan Photo</label>
-                                  <!-- Hidden file input -->
                                   <input type="file" id="pic" (change)="onPictureSelected($event)" hidden />
                                 </div>
                                 
                                 <div class="d-flex overflow-auto">
-                                  <!-- Display the selected image -->
                                   <div *ngIf="PictureUrl" class="edit-photos">
-                                    <img [src]="PictureUrl" alt="Image"  class="pic-img me-2 rounded-circle " />
+                                    <img [src]="PictureUrl" *ngIf="PictureUrl" alt="Image" class="pic-img me-2 rounded-circle" />
                                     
-                                    <!-- Remove icon appears when an image is selected -->
                                     <i class="fa-solid fa-xmark remove-icon" (click)="removePic()"></i>
                                     <div class="overlay"></div>
                                   </div>
                               
-                                  <!-- The button to add a photo, only when no image is selected -->
-                                  <div *ngIf="!PictureUrl" class="add-photo rounded-circle" (click)="triggerFileInput()">
+                                  <div *ngIf="!PictureUrl" class="add-photo rounded-circle" (click)="triggerPicInput()">
                                     <i class="fa-solid fa-plus"></i>
                                   </div>
+
                                 </div>
                               </div>
                               
@@ -110,7 +97,7 @@
                                         <i class="fa-solid fa-xmark remove-icon" (click)="removeImage(i)"></i>
                                         <div class="overlay"></div>
                                     </div>
-                                    <div class="add-photo" (click)="triggerFileInput()">
+                                    <div class="add-photo" (click)="triggerMediaInput()">
                                         <i class="fa-solid fa-plus"></i>
                                     </div>
                                 </div>

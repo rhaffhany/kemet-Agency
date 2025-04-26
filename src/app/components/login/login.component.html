@@ -19,8 +19,8 @@
                 <label for="password"></label>
                 <div class="password-icon" (click)="togglePasswordVisibility()">
                     <i class="fa-solid fa-eye-slash"></i>
-                </div>
-                <input class="form-control" formControlName="password" [type]="passwordVisible ? 'text' : 'password'" id="password" placeholder="PASSWORD" autocomplete="current-password">
+                </div> 
+                <input class="form-control password" formControlName="password" [type]="passwordVisible ? 'text' : 'password'" id="password" placeholder="PASSWORD" autocomplete="current-password">
                 <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched" class="alert alert-danger mt-2 mb-0 ">
                     <p *ngIf="loginForm.get('password')?.getError('required')">password is Required</p> 
                 </div>

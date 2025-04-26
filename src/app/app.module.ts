@@ -11,7 +11,7 @@ import { CardModule } from 'primeng/card';
 import { PaginatorModule } from 'primeng/paginator';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { InputNumberModule } from 'primeng/inputnumber';
-// import { TableModule } from 'primeng/table';
+import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { MatSortModule } from '@angular/material/sort';
@@ -36,6 +36,7 @@ import { IncomeComponent } from './components/income/income.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { AddPackageComponent } from './components/add-package/add-package.component';
 import { CommonModule } from '@angular/common';
+import { ReviewFilterPipe } from './pipe/review-filter.pipe';
 
 
 
@@ -57,6 +58,7 @@ import { CommonModule } from '@angular/common';
     IncomeComponent,
     EditProfileComponent,
     AddPackageComponent,
+    ReviewFilterPipe,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +73,7 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     SpeedDialModule,
     InputNumberModule,
-    // TableModule,
+    TableModule,
     ButtonModule,
     InputTextModule,
     MatSortModule,
