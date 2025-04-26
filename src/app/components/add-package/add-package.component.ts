@@ -42,25 +42,30 @@ export class AddPackageComponent {
   }
 
   PlanName:string = '';
-  Duration:string = '';
+  Duration: number = 1;
   Description:string = '';
   PlanAvailability:string = '';
   PlanLocation:string = '';
-  PictureUrl:any = '';
+  PictureFile: File | null = null;
+  PictureUrl: string = '';
   Images: File[] = [];
   EgyptianAdult:string = '';
   EgyptianStudent:string = '';
   TouristAdult:string = '';
   TouristStudent:string = '';
 
-  triggerFileInput(): void {
-    document.getElementById('media')?.click();
+  triggerPicInput(): void {
     document.getElementById('pic')?.click();
+  }
+  
+  triggerMediaInput(): void {
+    document.getElementById('media')?.click();
   }
 
   onPictureSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
+      this.PictureFile = file;
       const reader = new FileReader();
       reader.onload = () => {
         this.PictureUrl = reader.result as string;
@@ -68,25 +73,31 @@ export class AddPackageComponent {
       reader.readAsDataURL(file);
     }
   }
+    
   removePic() {
-    this.PictureUrl = null;  
+    this.PictureFile = null;
+    this.PictureUrl = '';
   }
 
- onImagesSelected(event: any) {
-    const files = event.target.files;
-    if (files) {
-      for (let i = 0; i < files.length; i++) {
-        const reader = new FileReader();
-        reader.onload = () => {
-          this.imagePreviews.push(reader.result as string);
-        };
-        reader.readAsDataURL(files[i]);
-      }
+  onImagesSelected(event: any) {
+      const files = event.target.files;
+      if (files) {
+        for (let i = 0; i < files.length; i++) {
+          const file = files[i];
+          this.Images.push(file); 
+          const reader = new FileReader();
+          reader.onload = () => {
+            this.imagePreviews.push(reader.result as string);
+          };
+          reader.readAsDataURL(file);
+        }
+      }
     }
-  }
+    
   
   removeImage(index: number) {
     this.imagePreviews.splice(index, 1);
+    this.Images.splice(index, 1); 
   }
 
   isLoading:boolean = false;
@@ -101,18 +112,16 @@ export class AddPackageComponent {
 
     const formData:FormData = new FormData();
     formData.append('PlanName',this.PlanName);
-    formData.append('Duration',this.Duration);
+    formData.append('Duration',this.Duration.toString());
     formData.append('Description',this.Description);
     formData.append('PlanAvailability',this.PlanAvailability);
     formData.append('PlanLocation',this.PlanLocation);
-    if (this.PictureUrl) {
-      formData.append('PictureUrl', this.PictureUrl);
+    if (this.PictureFile) {
+      formData.append('PictureUrl', this.PictureFile);
     }
-    if (this.Images && this.Images.length > 0) {
-      this.Images.forEach((file: File) => {
-        formData.append('Images', file); 
-      });
-    }
+    this.Images.forEach((img) => {
+      formData.append('Images', img);
+    });
     formData.append('Price.EgyptianAdult', this.EgyptianAdult.toString()); 
     formData.append('Price.EgyptianStudent', this.EgyptianStudent.toString());
     formData.append('Price.TouristAdult', this.TouristAdult.toString());
@@ -129,6 +138,8 @@ export class AddPackageComponent {
         });
         this.clearAllInputs();
         this.isLoading = false;
+
+        console.log("sucess>>",res);
       },
       error: (err) => {
         Swal.fire({
@@ -144,13 +155,14 @@ export class AddPackageComponent {
   }
 
   clearAllInputs() {
-    this.PictureUrl = null;
+    this.PictureFile = null;
+    this.PictureUrl = '';
     this.imagePreviews = [];
     this.Description = '';
     this.PlanName = '';
     this.PlanLocation = '';
     this.PlanAvailability = '';
-    this.Duration = '';
+    this.Duration = 0;
     this.TouristStudent = '';
     this.TouristAdult = '';
     this.EgyptianStudent = '';

@@ -56,13 +56,6 @@ section{
         cursor: not-allowed;
     }
 }
-.password-icon {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-}
 .request a{
     color: var(--secondaryColor);
 }
@@ -71,10 +64,10 @@ section{
 }
 .password-icon {
     position: absolute;
-    right: 20px;
-    transform: translateY(-10%);
+    right: 10px;
+    transform: translateY(50%);
     cursor: pointer;
-    color: #6F6C90; // Adjust icon color
+    color: #6F6C90; 
     font-size: 18px;
     transition: color 0.3s ease;
     &:hover {

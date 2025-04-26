@@ -32,7 +32,8 @@ export class CustomersComponent implements OnInit , AfterViewInit  {
   rows: number = 4; 
   first: number = 0;
 
-  // customers:any[] = [];
+  customersData:any = {};
+  customers:any[] = [];
   
   ngOnInit(): void {
 
@@ -44,23 +45,16 @@ export class CustomersComponent implements OnInit , AfterViewInit  {
 
     this._CustomerService.getTravelAgencyCustomers().subscribe({
       next: (res) => {
-        this.customers = res;
-        console.log('customers', res);
+        this.customersData = res;
+        this.customers = res.customers.$values;
+        this.dataSource.data = this.customers;
       }
     });
 
   }
 
-//lhad ma api yegy
-    customers = [
-      { name: 'John Doe', date:'1-4-2003', package: 'Premium', phone: '123456789', email: 'john@example.com', nationality: 'USA', category: 'VIP' },
-      { name: 'Jane Doe', date:'1-4-2021', package: 'Basic', phone: '987654321', email: 'jane@example.com', nationality: 'UK', category: 'Regular' },       
-      { name: 'John Doe', date:'23-4-2010', package: 'Premium', phone: '123456789', email: 'john@example.com', nationality: 'USA', category: 'VIP' },
-      { name: 'Jane Doe', date:'20-1-2025', package: 'Basic', phone: '987654321', email: 'jane@example.com', nationality: 'UK', category: 'Regular' }, 
-      { name: 'John Doe', date:'2-5-2024', package: 'Premium', phone: '123456789', email: 'john@example.com', nationality: 'USA', category: 'VIP' },        
-    ];
-    displayedColumns = ['name', 'date', 'package', 'phone', 'email', 'nationality', 'category'];
-    dataSource = new MatTableDataSource(this.customers);
+  displayedColumns = ['name', 'date', 'package', 'phone', 'email', 'category'];
+  dataSource = new MatTableDataSource(this.customers);
 
   @ViewChild(MatSort) sort!: MatSort;
   ngAfterViewInit() {
@@ -82,13 +76,13 @@ export class CustomersComponent implements OnInit , AfterViewInit  {
     : dateA.getTime() - dateB.getTime();
     });
     
-    this.dataSource.data = [...this.customers]; // trigger update
-  }
-  parseDate(dateString: string): Date {
-    const [day, month, year] = dateString.split('-').map(Number);
-    return new Date(year, month - 1, day);
+    this.dataSource.data = [...this.customers]; 
   }
 
+  parseDate(dateString: string): Date {
+    return new Date(dateString);
+  }
+    
   get paginatedPackages() {
     return this.customers.slice(this.first, this.first + this.rows);
   }

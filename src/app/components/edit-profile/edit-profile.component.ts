@@ -1,4 +1,5 @@
 import { Component, NgZone } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProfileService } from 'src/app/services/profile.service';
 import Swal from 'sweetalert2';
 
@@ -9,7 +10,7 @@ import Swal from 'sweetalert2';
 })
 export class EditProfileComponent {
 
-  constructor(private _ProfileService:ProfileService, private ngZone: NgZone){}
+  constructor(private _ProfileService:ProfileService, private ngZone: NgZone, private _Router:Router){}
   
   searchIcon: string = "../../../assets/icons/Search.png";
   agencyPP:string = '../../../assets/img/Agency pp.png'
@@ -119,7 +120,10 @@ export class EditProfileComponent {
           setTimeout(() => {
             location.reload();
           }, 2000); 
-        });
+        }); 
+
+        this._Router.navigate(['/profile']);
+        
         
       },
       error: (err)=>{

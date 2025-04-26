@@ -13,20 +13,20 @@ export class ReviewsComponent implements OnInit {
 
   agencyPP:string = '../../../assets/img/Agency pp.png'
   kLogo:string = '../../../assets/logo/K.png'
+  profileImg: string = '../../../assets/img/default-profile.png';
+
 
   searchIcon:string = "/assets/icons/Search.png"
-  searchResults: any[] = [];  
-  errorMessage: string = ''; 
 
   reviews:any[] = [];
-  ratingStats:any = {};
+  filteredReviews:any[] = [];
+  ratingStats:any;
+  satisfactionRate:any;
+  ratingPercents: { [key: number]: number } = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
 
   data: any;
   options: any;
   // totalReviews = 100; // Replace with API data
-
-  satisfactionRate = 60; // just bind this dynamically later if you like
-
 
   travelAgencyDash:any = {};
 
@@ -41,62 +41,75 @@ export class ReviewsComponent implements OnInit {
     this._ReviewService.getReviews().subscribe({
       next: (data)=>{
         this.reviews = data.reviews.$values;
-        console.log('reviews:', this.reviews);
-        this.ratingStats = data.satisfactionRate;
-        console.log('ratingStats:', this.ratingStats);
-        
+        this.filteredReviews = [...this.reviews];
+        this.satisfactionRate = data.satisfactionRate;
+        this.ratingStats = data.ratingStats;       
+        console.log(this.ratingStats);
+        this.reviews.forEach(review => {
+          const rating = review.rating;
+          if (this.ratingStats[rating] !== undefined) {
+            this.ratingStats[rating]++;
+          }
+        });
+
+        const totalReviews = this.reviews.length;
+        for (let i = 1; i <= 5; i++) {
+          this.ratingPercents[i] = totalReviews > 0
+            ? Math.round((this.ratingStats[i] / totalReviews) * 100)
+            : 0;
+        }
+         
       }
     });
 
-    // char data
-    this.data = {
-      labels: [ '95%'],
-      datasets: [
-        {
-          data: [15], // Example data (replace with API values)
-          backgroundColor: [
-            '#ff0000', // Red for 0%
-            // '#FF7F3F', // Blue for 95%
-            // '#FFA931'  // Teal for 100%
-          ],
-          hoverBackgroundColor: [
-            '#ff6384',
-            // '#36a2eb',
-            // '#4bc0c0'
-          ]
-        }
-      ]
-    };
-    this.options = {
-      cutout: '80%', // Makes it a doughnut
-      plugins: {
-        legend: {
-          position: 'top',
-          labels: {
-            usePointStyle: true,
-            padding: 20
-          }
-        },
-        tooltip: {
-          enabled: true 
-        }
-      },
-      responsive: true,
-      maintainAspectRatio: false
-    };
-
   }
 
-  // fetchData() {
-  //   // Example API call (replace with your actual endpoint)
-  //   this.http.get('your-api-endpoint').subscribe((res: any) => {
-  //     this.chartData.datasets[0].data = [
-  //       res.zeroPercent,
-  //       res.ninetyFivePercent,
-  //       res.hundredPercent
-  //     ];
-  //     this.totalReviews = res.totalReviews;
-  //   });
-  // }
+  getEmojiForSatisfaction(rate: number): string {
+    if (rate >= 0 && rate <= 20) return '😡'; 
+    if (rate <= 40) return '😞'; 
+    if (rate <= 60) return '😐'; 
+    if (rate <= 80) return '🙂'; 
+    return '😍'; 
+  }
+
+  //reviews filters
+  toggleFilterOptions:boolean = false;
+
+  sortByMostRecent() {
+    this.reviews.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+  }
+
+  filterByRating(order: 'high' | 'low') {
+    this.reviews.sort((a, b) => {
+      return order === 'high' ? b.rating - a.rating : a.rating - b.rating;
+    });
+  }
+  resetFilters() {
+    return this.reviews = [...this.filteredReviews];
+  }
+
+  //search 
+  searchText: string = ''; 
+  searchResults: any[] = [];
+  errorMessage: string = ''; 
+
+  onSearch() {
+    const query = this.searchText.trim().toLowerCase();
+  
+    if (query === '') {
+      this.searchResults = [];
+      this.errorMessage = '';
+      return;
+    }
+  
+    this.searchResults = this.reviews.filter(review =>
+      Object.values(review).some(value =>
+        value && value.toString().toLowerCase().includes(query)
+      )
+    );
+  
+    this.errorMessage = this.searchResults.length === 0 ? 'No results found.' : '';
+  }
+
 
 }
