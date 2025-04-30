@@ -1,0 +1,143 @@
+<section>
+
+    <div class="container">
+        <div class="d-flex justify-content-between">
+            <h4><img [src]="kLogo" alt="logo" class="logo">Hello <span class="fw-bold">{{travelAgencyDash.userName}},</span></h4>
+        </div>
+    </div>
+
+    
+    <div class="container mt-5 ">
+
+        <div class="row mt-2">
+            <div class="col-md-12">
+                <div class="package-info p-3 px-4 bg-white">
+                    <div class="d-flex gap-2">
+        
+                        <div class="col-md-6">
+                            <div class="picture">
+                                <div>
+                                  <label for="pic" class="mb-2">Plan Photo</label>
+                                  <input type="file" id="pic" (change)="onPictureSelected($event)" hidden />
+                                </div>
+                                
+                                <div class="d-flex overflow-auto">
+                                  <div *ngIf="PictureUrl" class="edit-photos">
+                                    <img [src]="PictureUrl" *ngIf="PictureUrl" alt="Image" class="pic-img me-2 rounded-circle" />
+                                    
+                                    <i class="fa-solid fa-xmark remove-icon" (click)="removePic()"></i>
+                                    <div class="overlay"></div>
+                                  </div>
+                              
+                                  <div *ngIf="!PictureUrl" class="add-photo rounded-circle" (click)="triggerPicInput()">
+                                    <i class="fa-solid fa-plus"></i>
+                                  </div>
+
+                                </div>
+                              </div>
+                              
+
+                            <div class="bio mt-3">
+                                <label for="bio" class="mb-2">Description</label>
+                                <textarea name="bio" id="bio" class="form-control" rows="4" [(ngModel)]="Description" (ngModelChange)="onEdit()" required></textarea>
+                            </div>
+        
+                        
+                            <!-- <div class="media">
+                                <div>
+                                    <label for="media" class="mb-2">Media</label>
+                                    <input type="file" id="media" (change)="onImagesSelected($event)" multiple hidden />
+                                </div>
+                                <div class="d-flex overflow-auto">
+                                    <div class="edit-photos" *ngFor="let img of imagePreviews; let i = index">
+                                        <img [src]="img" alt="Image" class="media-img me-2" />
+                                        <i class="fa-solid fa-xmark remove-icon" (click)="removeImage(i)"></i>
+                                        <div class="overlay"></div>
+                                    </div>
+                                    <div class="add-photo" (click)="triggerMediaInput()">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </div>
+                                </div>
+                            </div> -->
+                                          
+        
+                        </div>
+        
+                        <div class="col-md-6">
+                            <div class="name mb-1">
+                                <label for="name" class="mb-1">Name</label>
+                                <input type="text" id="name" class="form-control" [(ngModel)]="PlanName" (ngModelChange)="onEdit()" required>
+                            </div>
+
+                            <div class="location me-3 mt-1">
+                                <label for="location" class="mb-1">Location</label>
+                                <input type="text" id="location" class="form-control" [(ngModel)]="PlanLocation" (ngModelChange)="onEdit()" required>
+                            </div>
+        
+                            <div class="availability me-3">
+                                <label for="availability" class="mb-1">Availability</label>
+                                <input type="text" id="availability" class="form-control" [(ngModel)]="PlanAvailability" (ngModelChange)="onEdit()" required>
+                            </div>
+        
+                            <div class="duration mt-2">
+                                <label for="duration" class="mb-1">Duration</label>
+                                <div id="duration">
+                                    <p-inputNumber [(ngModel)]="Duration" mode="decimal" [showButtons]="true" inputId="days-input" [min]="1" [max]="1000" [step]="1" [useGrouping]="false"></p-inputNumber>
+                                </div>
+                            </div>
+        
+                            <div class="prices mt-2">
+                                <label for="tourist" class="mb-2">Tourist</label>
+                                <div class="d-flex gap-1">
+                                    <div class="input-group">
+                                        <span class="input-group-text">£</span>
+                                        <input type="text" class="form-control" placeholder="Student" [(ngModel)]="TouristStudent" (ngModelChange)="onEdit()" required aria-label="Amount (to the nearest pound)">
+                                        <span class="input-group-text">.00</span>
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-text">£</span>
+                                        <input type="text" class="form-control" placeholder="Adult" [(ngModel)]="TouristAdult" (ngModelChange)="onEdit()" aria-label="Amount (to the nearest pound)">
+                                        <span class="input-group-text">.00</span>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <div class="prices mt-2">
+                                <label for="Egyptian" class="mb-2">Egyptian</label>
+                                <div class="d-flex gap-1">
+                                    <div class="input-group">
+                                        <span class="input-group-text">£</span>
+                                        <input type="text" class="form-control" placeholder="Student" [(ngModel)]="EgyptianStudent" (ngModelChange)="onEdit()" aria-label="Amount (to the nearest pound)">
+                                        <span class="input-group-text">.00</span>
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-text">£</span>
+                                        <input type="text" class="form-control" placeholder="Adult" [(ngModel)]="EgyptianAdult" (ngModelChange)="onEdit()" aria-label="Amount (to the nearest pound)">
+                                        <span class="input-group-text">.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        
+                    </div>
+        
+                    <div class="d-flex justify-content-end mt-4">
+                        <button class="cancel-btn me-2" routerLink="/packages">Cancel</button>
+                        <button class="edit-btn" (click)="updatePlanData()">
+                            <ng-container *ngIf="isLoading">
+                                <i class="fas fa-spinner fa-spin me-1"></i>
+                                Updating...
+                            </ng-container>
+                            <ng-container *ngIf="!isLoading">
+                                Update
+                            </ng-container>
+                        </button>
+                    </div>
+        
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+</section>

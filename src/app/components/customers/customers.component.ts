@@ -3,7 +3,6 @@ import { MatSort } from '@angular/material/sort';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ProfileService } from 'src/app/services/profile.service';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatSelectChange } from '@angular/material/select';
 
 @Component({
   selector: 'app-customers',
@@ -34,7 +33,12 @@ export class CustomersComponent implements OnInit , AfterViewInit  {
 
   customersData:any = {};
   customers:any[] = [];
-  
+
+  dataSource: MatTableDataSource<any> = new MatTableDataSource();
+  @ViewChild(MatSort) sort!: MatSort;
+
+  displayedColumns = ['name', 'date', 'package', 'phone', 'email', 'category'];
+
   ngOnInit(): void {
 
     this._ProfileService.getTravelAgencyDashboard().subscribe({
@@ -47,19 +51,17 @@ export class CustomersComponent implements OnInit , AfterViewInit  {
       next: (res) => {
         this.customersData = res;
         this.customers = res.customers.$values;
+        this.dataSource = new MatTableDataSource(this.customers);
         this.dataSource.data = this.customers;
       }
     });
 
   }
 
-  displayedColumns = ['name', 'date', 'package', 'phone', 'email', 'category'];
-  dataSource = new MatTableDataSource(this.customers);
-
-  @ViewChild(MatSort) sort!: MatSort;
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
   }
+
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -68,8 +70,8 @@ export class CustomersComponent implements OnInit , AfterViewInit  {
 
   sortByDate(order: 'newest' | 'oldest') {
     this.customers.sort((a, b) => {
-    const dateA = this.parseDate(a.date);
-    const dateB = this.parseDate(b.date);
+    const dateA = this.parseDate(a.createdAt);
+    const dateB = this.parseDate(b.createdAt);
 
     return order === 'newest'
     ? dateB.getTime() - dateA.getTime()
@@ -77,6 +79,7 @@ export class CustomersComponent implements OnInit , AfterViewInit  {
     });
     
     this.dataSource.data = [...this.customers]; 
+    // this.dataSource.sort = this.sort;
   }
 
   parseDate(dateString: string): Date {

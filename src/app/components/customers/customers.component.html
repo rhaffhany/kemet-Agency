@@ -10,28 +10,28 @@
 
             <div class="col-5 md:col-6 lg:col-3">
                 <div class="surface-card shadow-2 p-3 border-round bg-white">
-                    <div class="flex mb-3">
+                    <div class="hstack">
                         <div class="customers d-flex justify-content-center align-items-center p-4">
                             <img [src]="customersIcon" alt="customers">
                         </div>
                         <div class="ms-3">
                             <p class="text-muted mb-1">Total Customers</p>
-                            <h5 class="fw-bold">{{customersData.numOfCustomers}}</h5>
-                            <i class="fa-solid fa-arrow-up green-icon"> 18%</i> <span style="font-size: 12px;"> last month</span>
+                            <h2 class="fw-bold">{{customersData.numOfCustomers}}</h2>
+                            <!-- <i class="fa-solid fa-arrow-up green-icon"> 18%</i> <span style="font-size: 12px;"> last month</span> -->
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-5 md:col-6 lg:col-3">
                 <div class="surface-card shadow-2 p-3 border-round bg-white">
-                    <div class="flex mb-3">
+                    <div class="hstack">
                         <div class="customers d-flex justify-content-center align-items-center p-4">
                             <img [src]="newCustomers" alt="customers">
                         </div>
                         <div class="ms-3">
                             <p class="text-muted mb-1">New Customers</p>
-                            <h5 class="fw-bold">{{customersData.numOfNewCustomers}}</h5>
-                            <i class="fa-solid fa-arrow-down red-icon"> 1%</i> <span style="font-size: 12px;"> last month</span>
+                            <h2 class="fw-bold">{{customersData.numOfNewCustomers}}</h2>
+                            <!-- <i class="fa-solid fa-arrow-down red-icon"> 1%</i> <span style="font-size: 12px;"> last month</span> -->
                         </div>
                     </div>
                 </div>
@@ -65,13 +65,8 @@
                             </div>
                         </div>          
                     </div> 
-                  
-                    <ng-container matColumnDef="position">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-                    </ng-container>
                       
-                    <div class="example-container" style="overflow: auto; max-height: 400px;">
+                    <div class="example-container" style="overflow: auto; max-height: 400px;" >
                         <mat-table #table [dataSource]="dataSource" matSort>
                       
                           <ng-container matColumnDef="name">
@@ -113,18 +108,28 @@
                           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
                       
                         </mat-table>
-                      </div>
-                      
+                        <!--                         
+                        <mat-paginator
+                        [pageSize]="4"
+                        [pageSizeOptions]="[4, 10, 20]"
+                        [pageIndex]="0"
+                        [length]="200"
+                        (page)="onPageChange($event)">
+                    </mat-paginator> -->
+                    </div>
+
+           
 
                     <p-paginator
                     (onPageChange)="onPageChange($event)"
                     [first]="first"
                     [rows]="rows"
                     [totalRecords]="200"
-                    [showCurrentPageReport]="true"
-                    [showPageLinks]="false"
+                    [showCurrentPageReport]="false"
+                    [showPageLinks]="true"
                     [showJumpToPageDropdown]="false"
-                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords}" />
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords}" 
+                    />
             
                 </div>
             </div>
