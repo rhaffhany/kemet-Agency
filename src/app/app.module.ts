@@ -37,8 +37,7 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 import { AddPackageComponent } from './components/add-package/add-package.component';
 import { CommonModule } from '@angular/common';
 import { ReviewFilterPipe } from './pipe/review-filter.pipe';
-
-
+import { UpdatePackageComponent } from './components/update-package/update-package.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +58,7 @@ import { ReviewFilterPipe } from './pipe/review-filter.pipe';
     EditProfileComponent,
     AddPackageComponent,
     ReviewFilterPipe,
+    UpdatePackageComponent,
   ],
   imports: [
     BrowserModule,

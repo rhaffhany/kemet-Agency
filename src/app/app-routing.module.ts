@@ -16,6 +16,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { IncomeComponent } from './components/income/income.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { AddPackageComponent } from './components/add-package/add-package.component';
+import { UpdatePackageComponent } from './components/update-package/update-package.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,7 @@ const routes: Routes = [
       {path:'edit-profile', component: EditProfileComponent, title:'Edit Profile'},
       {path:'packages', component: PackagesComponent, title:'Packages'},
       {path:'add-package', component: AddPackageComponent, title:'Add Package'},
+      {path:'update-package/:planID', component: UpdatePackageComponent, title:'Update Package'},
       {path:'customers', component: CustomersComponent, title:'Customers'},
       {path:'reviews', component: ReviewsComponent, title:'Reviews'},
       {path:'income', component: IncomeComponent, title:'Income'},

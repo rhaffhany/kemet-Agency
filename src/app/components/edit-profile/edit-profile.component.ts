@@ -47,7 +47,6 @@ export class EditProfileComponent {
     'Suez'
   ];
 
-
   ngOnInit(): void {
     this._ProfileService.getTravelAgencyDashboard().subscribe({
       next: (res) =>{
