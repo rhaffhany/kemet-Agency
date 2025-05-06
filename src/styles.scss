@@ -66,6 +66,11 @@ html, body {
         box-shadow: 0 6px 10px rgba(0, 0, 0, 0.7); 
         transform: translateY(-2px); 
     }
+    &:disabled{
+        backface-visibility: #6656056d;
+        color: #6865656b;
+        cursor: not-allowed;
+    }
 }
 
 

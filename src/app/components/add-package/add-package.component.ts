@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { PackageService } from 'src/app/services/package.service';
 import { ProfileService } from 'src/app/services/profile.service';
 import Swal from 'sweetalert2';
@@ -10,7 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class AddPackageComponent {
 
-  constructor(private _ProfileService:ProfileService, private _PackageService:PackageService){}
+  constructor(private _ProfileService:ProfileService, private _PackageService:PackageService, private _Router:Router){}
   
   searchIcon: string = "../../../assets/icons/Search.png";
   agencyPP:string = '../../../assets/img/Agency pp.png'
@@ -92,7 +93,7 @@ export class AddPackageComponent {
           reader.readAsDataURL(file);
         }
       }
-    }
+  }
     
   
   removeImage(index: number) {
@@ -139,7 +140,9 @@ export class AddPackageComponent {
         this.clearAllInputs();
         this.isLoading = false;
 
-        console.log("sucess>>",res);
+        this._Router.navigate(['/packages']);
+
+        // console.log("sucess>>",res);
       },
       error: (err) => {
         Swal.fire({

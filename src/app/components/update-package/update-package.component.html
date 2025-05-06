@@ -123,7 +123,7 @@
         
                     <div class="d-flex justify-content-end mt-4">
                         <button class="cancel-btn me-2" routerLink="/packages">Cancel</button>
-                        <button class="edit-btn" (click)="updatePlanData()">
+                        <button class="edit-btn" [disabled]="!isEdited || isLoading"  (click)="updatePlanData()">
                             <ng-container *ngIf="isLoading">
                                 <i class="fas fa-spinner fa-spin me-1"></i>
                                 Updating...
