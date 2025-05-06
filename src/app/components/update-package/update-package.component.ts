@@ -23,8 +23,23 @@ export class UpdatePackageComponent {
   planDetails:any ={};
 
   plans:any[] = [];
-  planID:any;
   updatedPlan:any = {};
+  
+  planID:any;
+  PlanName:string = '';
+  Duration: number = 1;
+  Description:string = '';
+  PlanAvailability:string = '';
+  PlanLocation:string = '';
+  PictureFile: File | null = null;
+  PictureUrl: string = '';
+  // Images: File[] = [];
+  // imagePreviews: string[] = [];
+  EgyptianAdult:string = '';
+  EgyptianStudent:string = '';
+  TouristAdult:string = '';
+  TouristStudent:string = '';
+
 
   isEdited = false;
   isLoading = false;
@@ -79,20 +94,6 @@ export class UpdatePackageComponent {
     });
 
   }
-
-  PlanName:string = '';
-  Duration: number = 1;
-  Description:string = '';
-  PlanAvailability:string = '';
-  PlanLocation:string = '';
-  PictureFile: File | null = null;
-  PictureUrl: string = '';
-  // Images: File[] = [];
-  // imagePreviews: string[] = [];
-  EgyptianAdult:string = '';
-  EgyptianStudent:string = '';
-  TouristAdult:string = '';
-  TouristStudent:string = '';
 
   triggerPicInput(): void {
     document.getElementById('pic')?.click();

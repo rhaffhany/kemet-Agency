@@ -167,8 +167,8 @@
                     <!-- buttons -->
                     <div class="d-flex justify-content-end mt-4">
                         <button class="cancel-btn me-2" routerLink="/profile">Cancel</button>
-                        <button class="edit-btn" (click)="addPackage()">
-                            <ng-container *ngIf="isLoading">
+                        <button class="edit-btn" [disabled]="!isEdited || isLoading" (click)="addPackage()">
+                            <ng-container *ngIf="isLoading" >
                                 <i class="fas fa-spinner fa-spin me-1"></i>
                                 Adding...
                             </ng-container>
