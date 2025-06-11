@@ -20,15 +20,20 @@ export class LoginComponent {
   mail:string ='kemet@example.com';
 
   isLoading:boolean =  false;
-  errorMsg:string = '';
+  errorMsg:string = 'Account not found, please check your email and password';
+  errorMsg2:string = 'Please enter your email and password';
+  errorMsg3:string = 'Please enter a valid email address';
 
   loginForm:FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required])
   });
 
+  currentErrorMsg: string = '';
+
   handleLogin():void{
     this.isLoading = true;
+    this.currentErrorMsg = '';
     if(this.loginForm.valid){
       this._AuthService.loginForm(this.loginForm.value).subscribe({
         next:(response) =>{
@@ -39,9 +44,19 @@ export class LoginComponent {
         },
         error:(err) => {
           console.log(err);
-          this.isLoading = false
+          this.isLoading = false;
+          if (err.status === 401 || err.status === 404) {
+            this.currentErrorMsg = this.errorMsg; 
+          } else if (err.status === 400) {
+            this.currentErrorMsg = this.errorMsg2; 
+          } else {
+            this.currentErrorMsg = 'An unexpected error occurred. Please try again.';
+          }
         }
       });
+    } else {
+      this.isLoading = false;
+      this.currentErrorMsg = this.errorMsg2; 
     }
   }
 
