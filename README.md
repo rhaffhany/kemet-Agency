@@ -31,9 +31,9 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running Unit Tests 🧪
+<!-- ## Running Unit Tests 🧪
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io). -->
 
 <!-- ## Running End-to-End Tests 🛠️
 
@@ -50,8 +50,8 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Contact Information 📧
 
 For any inquiries or support, please contact:
-- **Email**: support@kemetagency.com
-- **Website**: [KemetAgency](http://kemetagency.com)
+- **Email**: rhaffhany@gmail.com
+<!-- - **Website**: [KemetAgency](http://kemetagency.com)  -->
 
 ## Further Help ❓
 
