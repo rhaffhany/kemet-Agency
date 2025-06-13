@@ -29,14 +29,14 @@
                   <th>eg. Student</th> -->
                 </tr>
               </thead>
-              <tbody *ngFor="let package of paginatedPackages">
-                <tr>
+              <tbody>
+                <tr *ngFor="let package of paginatedPackages">
                   <td>{{package.planName}}</td>
                   <td>{{package.planLocation}}</td>
                   <td>{{package.duration}} days</td>
                   <td>{{package.description}}</td>
                   <td>{{package.planAvailability}}</td>
-                  <td><i class="fa-regular fa-pen-to-square update-btn shadow" role="button" [routerLink]="['/update-package', package.priceId]"></i></td>
+                  <td><i class="fa-regular fa-pen-to-square update-btn shadow" role="button" [routerLink]="['/update-package', package.planId]"></i></td>
                   <!-- <td>{{package.touristAdult | currency:'£'}}</td>
                   <td>{{package.touristStudent | currency:'£'}}</td>
                   <td>{{package.egyptianStudent | currency:'£'}}</td>
@@ -48,7 +48,7 @@
             (onPageChange)="onPageChange($event)"
             [first]="first"
             [rows]="rows"
-            [totalRecords]="200"
+            [totalRecords]="packages.length"
             [showCurrentPageReport]="true"
             [showPageLinks]="false"
             [showJumpToPageDropdown]="false"

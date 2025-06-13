@@ -27,7 +27,7 @@ export class UpdatePackageComponent {
   
   planID:any;
   PlanName:string = '';
-  Duration: number = 1;
+  Duration: number = 0;
   Description:string = '';
   PlanAvailability:string = '';
   PlanLocation:string = '';
@@ -51,7 +51,16 @@ export class UpdatePackageComponent {
     'Aswan',
     'Giza',
     'Sharm El Sheikh',
-    'Suez'
+    'Suez',
+    'Hurghada',
+    'Dahab',
+    'Siwa',
+    'Marsa Alam',
+    'Taba',
+    'El Gouna',
+    'Fayoum',
+    'Port Said',
+    'Ismailia'
   ];
 
   ngOnInit(): void {
