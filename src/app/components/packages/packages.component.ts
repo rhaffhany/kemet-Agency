@@ -28,10 +28,19 @@ export class PackagesComponent implements OnInit{
         this.planID = params.get('planID');
       }
     });
-    
+
+    this._PackageService.getAllPackages().subscribe({
+      next:(res)=>{
+        this.packages = res.$values; 
+      },
+      error:(err)=>{
+        console.log(err);
+      }
+    });
+
     this._PackageService.getPackages().subscribe({
       next:(res)=>{        
-        this.packages = res.plans.$values; 
+        // this.packages = res.plans.$values; 
         const topPlans = res.topPlans;   
 
         if (topPlans) {

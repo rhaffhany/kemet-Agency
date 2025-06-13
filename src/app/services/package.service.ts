@@ -21,6 +21,16 @@ export class PackageService {
     return this._HttpClient.get(`${this.DeployURL}/api/TravelAgency/GetTravelAgencyPlanStats`, headers);
   }
 
+  getAllPackages():Observable<any>{
+    const token = this._AuthService.getToken();
+    const headers = {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    };
+    return this._HttpClient.get(`${this.DeployURL}/api/TravelAgencyPlan`, headers)
+  }
+
   getDetailedPackage(planID:any):Observable<any>{
     const token = this._AuthService.getToken();
     const headers = {
@@ -44,5 +54,5 @@ export class PackageService {
   editPackage(formData: FormData):Observable<any>{
     return this._HttpClient.put(`${this.DeployURL}/api/TravelAgency/update-plan`, formData , {responseType:'text'} );
   }
-  
+ 
 }
