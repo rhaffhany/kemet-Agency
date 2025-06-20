@@ -1,4 +1,4 @@
-import { Component, NgZone } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PackageService } from 'src/app/services/package.service';
 import { ProfileService } from 'src/app/services/profile.service';
@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
   templateUrl: './update-package.component.html',
   styleUrls: ['./update-package.component.scss']
 })
-export class UpdatePackageComponent {
+export class UpdatePackageComponent implements OnInit {
   constructor(private _ProfileService:ProfileService,
               private _PackageService:PackageService, 
               private _ActivatedRoute:ActivatedRoute,
@@ -39,6 +39,8 @@ export class UpdatePackageComponent {
   EgyptianStudent:string = '';
   TouristAdult:string = '';
   TouristStudent:string = '';
+  HalfBoardPriceAddittion: string = '';
+  FullBoardPriceAddition: string = '';
 
 
   isEdited = false;
@@ -83,6 +85,9 @@ export class UpdatePackageComponent {
             this.EgyptianStudent = res.egyptianStudent.toString() || '';
             this.TouristAdult = res.touristAdult.toString() || '';
             this.TouristStudent = res.touristStudent.toString() || '';
+
+            this.HalfBoardPriceAddittion = res.halfBoardPriceAddittion;
+            this.FullBoardPriceAddition = res.fullBoardPriceAddition;
 
             this.updatedPlan = { ...res };
           }
@@ -176,6 +181,8 @@ export class UpdatePackageComponent {
       formData.append('Price.EgyptianStudent', this.EgyptianStudent.toString());
       formData.append('Price.TouristAdult', this.TouristAdult.toString());
       formData.append('Price.TouristStudent', this.TouristStudent.toString());
+      formData.append('HalfBoardPriceAddittion', this.HalfBoardPriceAddittion.toString());
+      formData.append('FullBoardPriceAddition', this.FullBoardPriceAddition.toString());
   
       this._PackageService.editPackage(formData).subscribe({
         next: (response)=>{

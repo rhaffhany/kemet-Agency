@@ -45,24 +45,22 @@ export class PackagesComponent implements OnInit{
 
         if (topPlans) {
           const entries = Object.entries(topPlans).filter(([key]) => key !== '$id');
-          const total = entries.reduce((sum, [, value]) => sum + Number(value), 0);
-    
-          let labels = entries.map(([key]) => key.trim());
-          let dataValues = entries.map(([, value]) =>
-            Math.round((Number(value) / total) * 100)
-          );
+          const sorted = entries.sort((a, b) => parseFloat(String(b[1])) - parseFloat(String(a[1])));
+          const top3 = sorted.slice(0, 3);
+          const remaining = sorted.slice(3).reduce((sum, [, value]) => sum + parseFloat(String(value)), 0);
 
-          const percentSum = dataValues.reduce((sum, val) => sum + val, 0);
-
-          // If the total isn't 100%, add "Others"
-          const remaining = 100 - percentSum;
+          // Prepare labels and values
+          let labels = top3.map(([key]) => key.trim());
+          let values = top3.map(([, value]) => parseFloat(String(value)));
           if (remaining > 0) {
             labels.push('Others');
-            dataValues.push(remaining);
+            values.push(remaining);
           }
+          const total = values.reduce((sum, val) => sum + val, 0);
+          // Calculate percentages as decimals
+          let dataValues = values.map(val => parseFloat(((val / total) * 100).toFixed(2)));
 
           this.data = {
-            // a3la 3 plans w others
             labels: labels,
             datasets: [
               {

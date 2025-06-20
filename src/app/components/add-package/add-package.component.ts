@@ -54,6 +54,8 @@ export class AddPackageComponent {
   EgyptianStudent:string = '';
   TouristAdult:string = '';
   TouristStudent:string = '';
+  HalfBoardPriceAddittion: string = '';
+  FullBoardPriceAddition: string = '';
 
   triggerPicInput(): void {
     document.getElementById('pic')?.click();
@@ -127,6 +129,8 @@ export class AddPackageComponent {
     formData.append('Price.EgyptianStudent', this.EgyptianStudent.toString());
     formData.append('Price.TouristAdult', this.TouristAdult.toString());
     formData.append('Price.TouristStudent', this.TouristStudent.toString());
+    formData.append('HalfBoardPriceAddittion', this.HalfBoardPriceAddittion.toString());
+    formData.append('FullBoardPriceAddition', this.FullBoardPriceAddition.toString());
 
 
     this._PackageService.addPacakage(formData).subscribe({
@@ -170,6 +174,8 @@ export class AddPackageComponent {
     this.TouristAdult = '';
     this.EgyptianStudent = '';
     this.EgyptianAdult = '';
+    this.HalfBoardPriceAddittion = '';
+    this.FullBoardPriceAddition = '';
     this.Images = [];
   }
 
