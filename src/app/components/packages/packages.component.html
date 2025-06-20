@@ -20,13 +20,13 @@
                   <th>Package Name</th>
                   <th>Location</th>
                   <th>Duration</th>
-                  <th class="w-50">description</th>
+                  <th class="w">description</th>
                   <th>Availability</th>
-                  <th>Edit</th>
-                  <!-- <th>Tr. Adult</th>
+                  <th>Tr. Adult</th>
                   <th>Tr. Student</th>
                   <th>eg. Adult</th>
-                  <th>eg. Student</th> -->
+                  <th>eg. Student</th>
+                  <th>Edit</th>
                 </tr>
               </thead>
               <tbody>
@@ -36,11 +36,11 @@
                   <td>{{package.duration}} days</td>
                   <td>{{package.description}}</td>
                   <td>{{package.planAvailability}}</td>
-                  <td><i class="fa-regular fa-pen-to-square update-btn shadow" role="button" [routerLink]="['/update-package', package.planId]"></i></td>
-                  <!-- <td>{{package.touristAdult | currency:'£'}}</td>
+                  <td>{{package.touristAdult | currency:'£'}}</td>
                   <td>{{package.touristStudent | currency:'£'}}</td>
                   <td>{{package.egyptianStudent | currency:'£'}}</td>
-                  <td>{{package.egyptianStudent | currency:'£'}}</td> -->
+                  <td>{{package.egyptianStudent | currency:'£'}}</td>
+                  <td><i class="fa-regular fa-pen-to-square update-btn shadow" role="button" [routerLink]="['/update-package', package.planId]"></i></td>
                 </tr>
               </tbody>
             </table>

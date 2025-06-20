@@ -52,12 +52,13 @@
             </div>
         </div>
 
-        <div class="row mt-2">
+        <div class="row mt-1">
             <div class="col-md-12">
-                <div class="package-info p-3 px-4 bg-white">
+                <div class="package-info px-4 bg-white">
                     <div class="d-flex gap-2">
         
                         <div class="col-md-6">
+
                             <div class="picture">
                                 <div>
                                   <label for="pic" class="mb-2">Plan Photo</label>
@@ -75,9 +76,22 @@
                                   <div *ngIf="!PictureUrl" class="add-photo rounded-circle" (click)="triggerPicInput()">
                                     <i class="fa-solid fa-plus"></i>
                                   </div>
-
                                 </div>
-                              </div>
+
+                                <div class="d-flex gap-3">
+                                    <div class="name mb-1 w-100">
+                                        <label for="name" class="mb-1">Name</label>
+                                        <input type="text" id="name" class="form-control" [(ngModel)]="PlanName" (ngModelChange)="onEdit()" required>
+                                    </div>
+
+                                    <div class="location me-3 w-100">
+                                        <label for="location" class="mb-1">Location</label>
+                                        <input type="text" id="location" class="form-control" [(ngModel)]="PlanLocation" (ngModelChange)="onEdit()" required>
+                                    </div>
+                                </div>
+                                
+
+                            </div>
                               
 
                             <div class="bio">
@@ -107,16 +121,7 @@
                         </div>
         
                         <div class="col-md-6">
-                            <div class="name mb-1">
-                                <label for="name" class="mb-1">Name</label>
-                                <input type="text" id="name" class="form-control" [(ngModel)]="PlanName" (ngModelChange)="onEdit()" required>
-                            </div>
-
-                            <div class="location me-3 mt-1">
-                                <label for="location" class="mb-1">Location</label>
-                                <input type="text" id="location" class="form-control" [(ngModel)]="PlanLocation" (ngModelChange)="onEdit()" required>
-                            </div>
-        
+                           
                             <div class="availability me-3">
                                 <label for="availability" class="mb-1">Availability</label>
                                 <input type="text" id="availability" class="form-control" [(ngModel)]="PlanAvailability" (ngModelChange)="onEdit()" required>
@@ -145,7 +150,7 @@
                                 </div>
                             </div>
         
-                            <div class="prices mt-2">
+                            <div class="prices mt-2 pb-4 border-bottom-1">
                                 <label for="Egyptian" class="mb-2">Egyptian</label>
                                 <div class="d-flex gap-1">
                                     <div class="input-group">
@@ -160,14 +165,38 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="boardPrices mt-2 d-flex gap-3">
+                                <div>
+                                    <label for="Egyptian" class="mb-2">Full Board</label>
+                                    <div class="d-flex gap-1">
+                                        <div class="input-group">
+                                            <span class="input-group-text">£</span>
+                                            <input type="text" class="form-control" placeholder="Full Board" [(ngModel)]="FullBoardPriceAddition" (ngModelChange)="onEdit()" aria-label="Amount (to the nearest pound)">
+                                            <span class="input-group-text">.00</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="Egyptian" class="mb-2">Half Board</label>       
+                                    <div class="d-flex gap-1">
+                                        <div class="input-group">
+                                            <span class="input-group-text">£</span>
+                                            <input type="text" class="form-control" placeholder="Half Board" [(ngModel)]="HalfBoardPriceAddittion" (ngModelChange)="onEdit()" aria-label="Amount (to the nearest pound)">
+                                            <span class="input-group-text">.00</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
         
                     </div>
         
                     <!-- buttons -->
-                    <div class="d-flex justify-content-end mt-4">
+                    <div class="d-flex justify-content-end">
                         <button class="cancel-btn me-2" routerLink="/profile">Cancel</button>
-                        <button class="edit-btn" [disabled]="!isEdited || isLoading" (click)="addPackage()">
+                        <button class="edit-btn" (click)="addPackage()">
                             <ng-container *ngIf="isLoading" >
                                 <i class="fas fa-spinner fa-spin me-1"></i>
                                 Adding...
